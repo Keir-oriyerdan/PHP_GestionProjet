@@ -46,8 +46,6 @@ class FormUtilisateur
         return $form;
     }
 
-
-
     public function enregistrerUtilisateur()
     {
         echo "L'utilisateur {$this->prenom} {$this->nom} a été enregistré !";
@@ -88,11 +86,13 @@ class FormUtilisateur
         return true;
     }
 
-    public function updateUtilisateur() {
+    public function updateUtilisateur()
+    {
 
     }
 
-    public function deleteUtilisateur() {
+    public function deleteUtilisateur()
+    {
 
     }
 }
