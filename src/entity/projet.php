@@ -3,25 +3,25 @@
 namespace Madmax\Skrrr\entity;
 
 class Projet {
-    private int $ID_Priorite;
+    private int $ID;
     private int $ID_Admin;
 
     /**
-     * Get the value of ID_Priorite
+     * Get the value of ID
      */ 
-    public function getID_Priorite()
+    public function getID()
     {
-        return $this->ID_Priorite;
+        return $this->ID;
     }
 
     /**
-     * Set the value of ID_Priorite
+     * Set the value of ID
      *
      * @return  self
      */ 
-    public function setID_Priorite($ID_Priorite)
+    public function setID($ID)
     {
-        $this->ID_Priorite = $ID_Priorite;
+        $this->ID = $ID;
 
         return $this;
     }
