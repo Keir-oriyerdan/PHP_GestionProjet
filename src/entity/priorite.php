@@ -1,5 +1,7 @@
 <?php 
 
+namespace Madmax\Skrrr\entity;
+
 class Priorite {
     private int $Id_Priorite;
     private ?string $Niveau_Priorite;
