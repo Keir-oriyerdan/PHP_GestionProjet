@@ -27,11 +27,12 @@ class UtilisateurController extends AbstractController {
 
     public function ajoutUtilisateur()
     {
-        if (isset($_POST['nom'])) {
+        if (isset($_POST['submit'])) {
             $datas = [
                 'nom' => $_POST['nom'],
                 'prenom' => $_POST['prenom'],
             ];
+            var_dump($datas);
             $this->creerUtilisateur($datas);
         } else {
             $form = [
