@@ -1,0 +1,16 @@
+{
+    "name": "madmax/skrrr",
+    "description": "Projet PHP",
+    "autoload": {
+        "psr-4": {
+            "Madmax\\Skrrr\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Somenae",
+            "email": "kevindevaux@neuf.fr"
+        }
+    ],
+    "require": {}
+}
