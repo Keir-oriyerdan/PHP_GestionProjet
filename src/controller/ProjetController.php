@@ -13,10 +13,10 @@ class ProjetController extends AbstractController{
         $this->render('projets.php', ['projets' => $results]);
     }
 
-    public function creationProjet()
+    public function ProjetForm()
     {
         $results = Model::getInstance()->readAll('projet');
-        $this->render('creationProjet.php', ['creationProjet' => $results]);
+        $this->render('ProjetForm.php', ['creationProjet' => $results]);
     }
 
     public function createProjet()
