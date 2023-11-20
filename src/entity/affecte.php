@@ -1,5 +1,7 @@
 <?php
 
+namespace Madmax\Skrrr\entity;
+
 class Affecte {
     private int $ID_Projet;
     private int $ID_Utilisateur;
