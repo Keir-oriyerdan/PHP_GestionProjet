@@ -3,29 +3,29 @@
 namespace Madmax\Skrrr\entity;
 
 class Priorite {
-    private int $Id_Priorite;
+    private int $ID;
     private ?string $Niveau_Priorite;
-
+    
     /**
-     * Get the value of Id_Priorite
+     * Get the value of ID
      */ 
-    public function getId_Priorite()
+    public function getID()
     {
-        return $this->Id_Priorite;
+        return $this->ID;
     }
 
     /**
-     * Set the value of Id_Priorite
+     * Set the value of ID
      *
      * @return  self
      */ 
-    public function setId_Priorite($Id_Priorite)
+    public function setID($ID)
     {
-        $this->Id_Priorite = $Id_Priorite;
+        $this->ID = $ID;
 
         return $this;
     }
-
+    
     /**
      * Get the value of Niveau_Priorite
      */ 
@@ -33,7 +33,7 @@ class Priorite {
     {
         return $this->Niveau_Priorite;
     }
-
+    
     /**
      * Set the value of Niveau_Priorite
      *

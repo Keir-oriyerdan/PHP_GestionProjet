@@ -2,25 +2,67 @@
 
 namespace Madmax\Skrrr\entity;
 
-class Utilisateur{
-    private int $id_utilisateur;
-
+class Utilisateur {
+    private ?int $ID;
+    private ?string $Nom;
+    private ?string $Prenom;
+    
     /**
-     * Get the value of id_utilisateur
+     * Get the value of ID
      */ 
-    public function getId_utilisateur()
+    public function getID()
     {
-        return $this->id_utilisateur;
+        return $this->ID;
     }
 
     /**
-     * Set the value of id_utilisateur
+     * Set the value of ID
      *
      * @return  self
      */ 
-    public function setId_utilisateur($id_utilisateur)
+    public function setID($ID)
     {
-        $this->id_utilisateur = $id_utilisateur;
+        $this->ID = $ID;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Nom
+     */ 
+    public function getNom()
+    {
+        return $this->Nom;
+    }
+
+    /**
+     * Set the value of Nom
+     *
+     * @return  self
+     */ 
+    public function setNom($Nom)
+    {
+        $this->Nom = $Nom;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Prenom
+     */ 
+    public function getPrenom()
+    {
+        return $this->Prenom;
+    }
+
+    /**
+     * Set the value of Prenom
+     *
+     * @return  self
+     */ 
+    public function setPrenom($Prenom)
+    {
+        $this->Prenom = $Prenom;
 
         return $this;
     }

@@ -3,7 +3,7 @@
 namespace Madmax\Skrrr\entity;
 
 class tache {
-    private ?int $ID_Tache;
+    private ?int $ID;
     private ?string $Titre;
     private ?string $Description;
     private ?int $Id_Priorite;
@@ -12,21 +12,21 @@ class tache {
     private ?int $ID_Projet;
 
     /**
-     * Get the value of ID_Tache
+     * Get the value of ID
      */ 
-    public function getID_Tache()
+    public function getID()
     {
-        return $this->ID_Tache;
+        return $this->ID;
     }
 
     /**
-     * Set the value of ID_Tache
+     * Set the value of ID
      *
      * @return  self
      */ 
-    public function setID_Tache($ID_Tache)
+    public function setID($ID)
     {
-        $this->ID_Tache = $ID_Tache;
+        $this->ID = $ID;
 
         return $this;
     }
