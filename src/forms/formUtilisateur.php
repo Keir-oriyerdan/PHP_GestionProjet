@@ -6,6 +6,8 @@ use Madmax\Skrrr\app\Model;
 
 class FormUtilisateur
 {
+    private $id;
+    private $id_utilisateur;
     private $nom;
     private $prenom;
     private $email;
@@ -18,6 +20,60 @@ class FormUtilisateur
         $this->email = $email;
         $this->motDePasse = $motDePasse;
     }
+
+    public static function createForm($action, $mode = 'create', $id = 0)
+    {
+        if ($mode === 'update') {
+            $livre = Model::getInstance()->getById('utilisateur', $id);
+            return self::form($action);
+        }
+        return self::form($action);
+    }
+
+    public static function form($action)
+    {
+        $form = "<form action = $action method='POST'>
+        <label for='nom'>Nom :</label>
+        <input type='text' name='nom' required><br>
+        <label for='prenom'>Prénom :</label>
+        <input type='text' name='prenom' required><br>
+        <label for='email'>Email :</label>
+        <input type='email' name='email' required><br>
+        <label for='mot_de_passe'>Mot de passe :</label>
+        <input type='password' name='mot_de_passe' required><br>
+        <input type='submit' value='inscription'>
+            </form>";
+        return $form;
+    }
+
+
+
+    public static function createForm($action, $mode = 'create', $id = 0)
+    {
+        if ($mode === 'update') {
+            $livre = Model::getInstance()->getById('utilisateur', $id);
+            return self::form($action);
+        }
+        return self::form($action);
+    }
+
+    public static function form($action)
+    {
+        $form = "<form action = $action method='POST'>
+        <label for='nom'>Nom :</label>
+        <input type='text' name='nom' required><br>
+        <label for='prenom'>Prénom :</label>
+        <input type='text' name='prenom' required><br>
+        <label for='email'>Email :</label>
+        <input type='email' name='email' required><br>
+        <label for='mot_de_passe'>Mot de passe :</label>
+        <input type='password' name='mot_de_passe' required><br>
+        <input type='submit' value='inscription'>
+            </form>";
+        return $form;
+    }
+
+
 
     public function enregistrerUtilisateur()
     {
@@ -59,12 +115,12 @@ class FormUtilisateur
         return true;
     }
 
-    public function updateUtilisateur()
-    {
+    public function updateUtilisateur() {
+
     }
 
-    public function deleteUtilisateur()
-    {
+    public function deleteUtilisateur() {
+
     }
 }
 
@@ -90,3 +146,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
+
+
+    
+
