@@ -12,5 +12,6 @@
             "email": "kevindevaux@neuf.fr"
         }
     ],
+    "minimum-stability": "stable",
     "require": {}
 }
