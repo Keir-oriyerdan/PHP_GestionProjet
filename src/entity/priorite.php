@@ -2,6 +2,7 @@
 
 class Priorite {
     private int $Id_Priorite;
+    private ?string $Niveau_Priorite;
 
     /**
      * Get the value of Id_Priorite
@@ -22,8 +23,6 @@ class Priorite {
 
         return $this;
     }
-
-    private ?string $Niveau_Priorite;
 
     /**
      * Get the value of Niveau_Priorite

@@ -4,6 +4,7 @@ namespace Madmax\Skrrr\entity;
 
 class Projet {
     private int $ID_Priorite;
+    private int $ID_Admin;
 
     /**
      * Get the value of ID_Priorite
@@ -24,8 +25,6 @@ class Projet {
 
         return $this;
     }
-
-    private int $ID_Admin;
 
     /**
      * Get the value of ID_Admin

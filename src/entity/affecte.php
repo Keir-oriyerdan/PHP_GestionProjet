@@ -2,6 +2,7 @@
 
 class Affecte {
     private int $ID_Projet;
+    private int $ID_Utilisateur;
 
     /**
      * Get the value of ID_Projet
@@ -22,8 +23,6 @@ class Affecte {
 
         return $this;
     }
-
-    private int $ID_Utilisateur;
 
     /**
      * Get the value of ID_Utilisateur
