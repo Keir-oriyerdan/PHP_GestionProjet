@@ -11,18 +11,21 @@ class FormUtilisateur
     private $email;
     private $motDePasse;
 
-    public function __construct($nom, $prenom, $email, $motDePasse) {
+    public function __construct($nom, $prenom, $email, $motDePasse)
+    {
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->email = $email;
         $this->motDePasse = $motDePasse;
     }
 
-    public function enregistrerUtilisateur() {
+    public function enregistrerUtilisateur()
+    {
         echo "L'utilisateur {$this->prenom} {$this->nom} a été enregistré !";
     }
 
-    public function validerInscription() {
+    public function validerInscription()
+    {
         $error = [];
 
         if (empty($_POST['nom']) || empty($_POST['prenom']) || empty($_POST['email']) || empty($_POST['mot_de_passe'])) {
@@ -31,7 +34,7 @@ class FormUtilisateur
 
         if (isset($_POST['username']) && strlen($_POST['username']) < 5) {
             $error[] = 'Le nom d\'utilisateur doit comporter 5 caractères minimum';
-        } 
+        }
 
         if (isset($_POST['password'])) {
             $password = $_POST['password'];
@@ -56,10 +59,12 @@ class FormUtilisateur
         return true;
     }
 
-    public function updateUtilisateur() {
+    public function updateUtilisateur()
+    {
     }
 
-    public function deleteUtilisateur() {
+    public function deleteUtilisateur()
+    {
     }
 }
 
@@ -85,4 +90,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
-
