@@ -4,6 +4,7 @@ namespace Madmax\Skrrr\controller;
 
 use Madmax\Skrrr\app\AbstractController;
 use Madmax\Skrrr\app\Model;
+use Madmax\Skrrr\forms\FormUtilisateur;
 
 class UtilisateurController extends AbstractController {
 
@@ -20,8 +21,23 @@ class UtilisateurController extends AbstractController {
 
     public function displayUtilisateur()
     {
-
-        $result = Model::getInstance()->getById('utilisateur', $_GET['idUtilisateur']);
+        $result = Model::getInstance()->getById('utilisateur', $_GET['id']);
         $this->render('utilisateur.php', ['utilisateur' => $result]);
+    }
+
+    public function ajoutUtilisateur()
+    {
+        if (isset($_POST['nom'])) {
+            $datas = [
+                'nom' => $_POST['nom'],
+                'prenom' => $_POST['prenom'],
+            ];
+            $this->creerUtilisateur($datas);
+        } else {
+            $form = [
+                'form' => FormUtilisateur::createForm('?controller=UtilisateurController&method=ajoutUtilisateur'),
+            ];
+            $this->render('ajoutUtilisateur.php', $form);
+        }
     }
 }
