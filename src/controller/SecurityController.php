@@ -25,17 +25,20 @@ class SecurityController {
 
     private function validateIds($username, $password)
     {
-        //valeurs temporairess
-        $validUsername = "toto";
-        $validPassword = "root";
+        // Mettez en œuvre la logique de validation des informations d'identification
+        // Cela pourrait impliquer une vérification dans la base de données, par exemple
 
-        return $username === $validUsername && $password === $validPassword;
+        // Pour l'exemple, supposons que les informations d'identification suivantes sont valides
+        $validUsername = "toto";
+        $validHashedPassword = 'root/parenVadrouille';
+
+        // Utiliser password_verify pour comparer le mot de passe fourni avec le hachage stocké
+        return $username === $validUsername && password_verify($password, $validHashedPassword);
     }
 
     private function createUserSession($username)
     {
         session_start();
-
         $_SESSION['username'] = $username;
     }
 
