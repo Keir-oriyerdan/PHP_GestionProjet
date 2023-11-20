@@ -4,7 +4,7 @@ namespace Madmax\Skrrr\entity;
 
 class Projet {
     private int $ID;
-    private int $ID_Admin;
+    private int $ID_Administrateur;
 
     /**
      * Get the value of ID
@@ -27,21 +27,21 @@ class Projet {
     }
 
     /**
-     * Get the value of ID_Admin
+     * Get the value of ID_Administrateur
      */ 
-    public function getID_Admin()
+    public function getID_Administrateur()
     {
-        return $this->ID_Admin;
+        return $this->ID_Administrateur;
     }
 
     /**
-     * Set the value of ID_Admin
+     * Set the value of ID_Administrateur
      *
      * @return  self
      */ 
-    public function setID_Admin($ID_Admin)
+    public function setID_Administrateur($ID_Administrateur)
     {
-        $this->ID_Admin = $ID_Admin;
+        $this->ID_Administrateur = $ID_Administrateur;
 
         return $this;
     }
