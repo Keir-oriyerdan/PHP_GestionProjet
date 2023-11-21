@@ -6,6 +6,8 @@ use Madmax\Skrrr\app\model;
 
 class FormProjet
 {
+    private $id;
+    private $id_administrateur;
     private $nom;
     private $description;
 
@@ -17,7 +19,7 @@ class FormProjet
     public static function createForm($action, $mode = 'create', $id = 0)
     {
         if ($mode === 'update') {
-            $livre = Model::getInstance()->getById('utilisateur', $id);
+            $livre = Model::getInstance()->getById('projet', $id);
             return self::form($action);
         }
         return self::form($action);
@@ -28,23 +30,21 @@ class FormProjet
         $form = "<form action = $action method='POST'>
         <label for='nom'>Nom :</label>
         <input type='text' name='nom' required><br>
-        <label for='prenom'>Prénom :</label>
-        <input type='text' name='prenom' required><br>
-        <label for='email'>Email :</label>
-        <input type='email' name='email' required><br>
-        <label for='mot_de_passe'>Mot de passe :</label>
-        <input type='password' name='mot_de_passe' required><br>
-        <input type='submit' value='inscription'>
+
+        <label for='text'>Description: </label>
+        <input type='text' name='description' required><br>
+        
+        <input type='submit' value='créer'>
             </form>";
         return $form;
     }
 
 
-    public function enregistrerFormProjet() {
+    public function enregistrerProjet() {
         echo "Le projet {$this->nom} a été crée !";
     }
 
-    public function validerFormProjet() {
+    public function validerProjet() {
         $error = [];
 
         if (empty($_POST['nom']) || empty($_POST['description'])) {
@@ -58,14 +58,18 @@ class FormProjet
         return true;
     }
 
-    public function updateFormProjet() {
+    public function updateProjet() 
+    {
+
     }
 
-    public function deleteFormProjet() {
+    public function deleteProjet() 
+    {
+
     }
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+/* if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST['nom']) || empty($_POST['description'])) {
         echo 'Veuillez compléter tous les champs.';
     } else {
@@ -84,5 +88,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     }
-}
+} 
+ */
 
