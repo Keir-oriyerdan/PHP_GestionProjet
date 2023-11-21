@@ -105,4 +105,11 @@ class Model extends PDO
         $sql = "DELETE from $entity WHERE id = '$id'";
         $this->exec($sql);
     }
+
+    public function getProjetAdmins($search)
+    {
+        $query = 'SELECT * FROM projet JOIN administrateur ON projet.ID_Administrateur = administrateur.ID
+        JOIN utilisateur ON administrateur.ID_Utilisateur = utilisateur.ID
+        WHERE projet.nom = '.$search;
+    }
 }
