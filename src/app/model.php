@@ -110,7 +110,7 @@ class Model extends PDO
     {
         $sql = "SELECT ID FROM utilisateur WHERE username = ".htmlspecialchars($username);
         $preparedRequest = $this->prepare($sql);
-        $this->exec($preparedRequest);
+        return $this->exec($preparedRequest);
 
     }
 
@@ -120,6 +120,18 @@ class Model extends PDO
         JOIN utilisateur ON administrateur.ID_Utilisateur = utilisateur.ID
         WHERE administrateur.ID_Utilisateur = ".$_SESSION['ID'];
         $preparedRequest = $this->prepare($sql);
-        $this->exec($preparedRequest);
+        return $this->exec($preparedRequest);
+    }
+
+    public function readAllAdmin()
+    {
+        $sql = "SELECT utilisateur.Nom, utilisateur.Prenom FROM administrateur JOIN utilisateur ON administrateur.ID_Utilisateur = utilisateur.ID";
+        $preparedRequest = $this->prepare($sql);
+        return $this->exec($preparedRequest);
+    }
+
+    public function getAdminByProjet()
+    {
+        $sql = 
     }
 }
