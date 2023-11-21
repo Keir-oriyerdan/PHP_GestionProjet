@@ -21,7 +21,7 @@ class FormProjet
     {
         if ($mode === 'update') {
             Model::getInstance()->getById('projet', $id);
-            return self::form($action);
+            return self::formUpdate($action);
         }
         return self::form($action);
     }
@@ -33,10 +33,25 @@ class FormProjet
         <label for='nom'>Nom :</label>
         <input type='text' name='nom' required><br>
 
-        <label for='text'>Description: </label>
+        <label for='description'>Description: </label>
         <input type='text' name='description' required><br>
         
         <button type='submit' name='submit'>Créer</button>
+            </form>";
+        return $form;
+    }
+
+    // formulaire pour update un projet 
+    public static function formUpdate($action)
+    {
+        $form = "<form action = $action method='POST'>
+        <label for='nom'>Changer de nom: </label>
+        <input type='text' name='nom' required><br>
+
+        <label for='description'>Changer de description: </label>
+        <input type='text' name='description' required><br>
+
+        <button type='submit' name='submit'>Modifier</button>
             </form>";
         return $form;
     }
@@ -58,16 +73,6 @@ class FormProjet
         }
 
         return true;
-    }
-
-    public function updateProjet() 
-    {
-
-    }
-
-    public function deleteProjet() 
-    {
-
     }
 }
 
