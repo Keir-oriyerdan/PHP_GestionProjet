@@ -7,13 +7,16 @@ use Madmax\Skrrr\app\Model;
 
 class SecurityController {
 
+    private $id_utilisateur;
+    private $email;
+    private $motDePasse;
 
-    public function IdentificationLogin($username, $password)
+    public function IdentificationLogin($id_utilisateur, $motDePasse)
     {
        
-        if ($this->validateIds($username, $password)) {
+        if ($this->validateIds($id_utilisateur, $motDePasse)) {
             
-            $this->createUserSession($username);
+            $this->createUserSession($id_utilisateur);
 
             
             header("Location: /index.php");
@@ -23,19 +26,19 @@ class SecurityController {
         }
     }
 
-    private function validateIds($username, $password)
+    private function validateIds($id_utilisateur, $motDePasse)
     {
 
-        $validUsername = "toto";
-        $validHashedPassword = 'root/parenVadrouille';
+        $validId_utilisateur = "toto";
+        $validHashedmotdepasse = 'root/parenVadrouille';
 
-        return $username === $validUsername && password_verify($password, $validHashedPassword);
+        return $id_utilisateur === $validId_utilisateur && password_verify($motDePasse, $validHashedmotdepasse);
     }
 
-    private function createUserSession($username)
+    private function createUserSession($id_utilisateur)
     {
         session_start();
-        $_SESSION['username'] = $username;
+        $_SESSION['utilisateur'] = $id_utilisateur;
     }
 
     public function deconnexion()
