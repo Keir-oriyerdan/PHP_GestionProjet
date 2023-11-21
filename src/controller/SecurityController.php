@@ -11,14 +11,13 @@ class SecurityController {
     private $email;
     private $motDePasse;
 
-    public function IdentificationLogin($id_utilisateur, $motDePasse)
+    public function IdentificationLogin($id_utilisateur, $motDePasse, $email)
     {
-       
-        if ($this->validateIds($id_utilisateur, $motDePasse)) {
+        // si les éléments suivants (utilisateur, mpd et email) sont valides, une session est créée.
+        if ($this->validateIds($id_utilisateur, $motDePasse, $email)) {
             
             $this->createUserSession($id_utilisateur);
 
-            
             header("Location: /index.php");
             exit();
         } else {
@@ -26,13 +25,16 @@ class SecurityController {
         }
     }
 
-    private function validateIds($id_utilisateur, $motDePasse)
+    private function validateIds($id_utilisateur, $motDePasse, $email)
     {
 
         $validId_utilisateur = "toto";
         $validHashedmotdepasse = 'root/parenVadrouille';
+        $validEmail = "momo@bmomo.fr";
 
-        return $id_utilisateur === $validId_utilisateur && password_verify($motDePasse, $validHashedmotdepasse);
+        return $id_utilisateur === $validId_utilisateur 
+        && password_verify($motDePasse, $validHashedmotdepasse) 
+        && password_verify($email, $validEmail);
     }
 
     private function createUserSession($id_utilisateur)
