@@ -25,13 +25,6 @@ class ProjetController extends AbstractController{
         $this->render('projet.php', ['projet' => $result]);
     }
 
-    /* public function ProjetForm()
-    {
-        $results = Model::getInstance()->readAll('projet');
-        $this->render('ProjetForm.php', ['creationProjet' => $results]);
-    } */
-
-
     public function ProjetForm()
     {
         if (isset($_POST['submit'])) {
@@ -39,8 +32,8 @@ class ProjetController extends AbstractController{
                 'nom' => $_POST['nom'],
                 'description' => $_POST['description'],
             ];
-            var_dump($datas);
             $this->createProjet($datas);
+            $this->displayProjets();
         } else {
             $form = [
                 'form' => FormProjet::createForm('?controller=ProjetController&method=ProjetForm'),
@@ -49,14 +42,7 @@ class ProjetController extends AbstractController{
         }
     }
 
-    /* public function updateProjet()
-    {
-        $datas = [
-            'titre' => $_GET['titre'],
-        ];
-
-        Model::getInstance()->updateById('projet',$_GET['id'], $datas);
-    } 
+    /* 
     
     ?controller=ProjetController&method=ProjetForm
     

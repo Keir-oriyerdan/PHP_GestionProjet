@@ -19,7 +19,7 @@ class FormProjet
     public static function createForm($action, $mode = 'create', $id = 0)
     {
         if ($mode === 'update') {
-            $livre = Model::getInstance()->getById('projet', $id);
+            Model::getInstance()->getById('projet', $id);
             return self::form($action);
         }
         return self::form($action);
@@ -33,8 +33,8 @@ class FormProjet
 
         <label for='text'>Description: </label>
         <input type='text' name='description' required><br>
-        
-        <input type='submit' value='créer'>
+
+        <button type='submit' name='submit'>Créer</button>
             </form>";
         return $form;
     }
