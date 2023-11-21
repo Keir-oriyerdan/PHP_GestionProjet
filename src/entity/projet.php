@@ -5,6 +5,8 @@ namespace Madmax\Skrrr\entity;
 class Projet {
     private int $ID;
     private int $ID_Administrateur;
+    private ?string $Nom;
+    private ?string $Description;
 
     /**
      * Get the value of ID
@@ -42,6 +44,46 @@ class Projet {
     public function setID_Administrateur($ID_Administrateur)
     {
         $this->ID_Administrateur = $ID_Administrateur;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Nom
+     */ 
+    public function getNom()
+    {
+        return $this->Nom;
+    }
+
+    /**
+     * Set the value of Nom
+     *
+     * @return  self
+     */ 
+    public function setNom($Nom)
+    {
+        $this->Nom = $Nom;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Description
+     */ 
+    public function getDescription()
+    {
+        return $this->Description;
+    }
+
+    /**
+     * Set the value of Description
+     *
+     * @return  self
+     */ 
+    public function setDescription($Description)
+    {
+        $this->Description = $Description;
 
         return $this;
     }
