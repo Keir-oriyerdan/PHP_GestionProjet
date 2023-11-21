@@ -106,10 +106,20 @@ class Model extends PDO
         $this->exec($sql);
     }
 
-    public function getProjetAdmins($search)
+    public function getUserID($username)
     {
-        $query = 'SELECT * FROM projet JOIN administrateur ON projet.ID_Administrateur = administrateur.ID
+        $sql = "SELECT ID FROM utilisateur WHERE username = ".htmlspecialchars($username);
+        $preparedRequest = $this->prepare($sql);
+        $this->exec($preparedRequest);
+
+    }
+
+    public function getProjetAdmins()
+    {
+        $sql = "SELECT * FROM projet JOIN administrateur ON projet.ID_Administrateur = administrateur.ID
         JOIN utilisateur ON administrateur.ID_Utilisateur = utilisateur.ID
-        WHERE projet.nom = '.$search;
+        WHERE administrateur.ID_Utilisateur = ".$_SESSION['ID'];
+        $preparedRequest = $this->prepare($sql);
+        $this->exec($preparedRequest);
     }
 }
