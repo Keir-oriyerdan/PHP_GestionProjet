@@ -41,10 +41,12 @@ class FormUtilisateur
         <input type='email' name='email' required><br>
         <label for='mot_de_passe'>Mot de passe :</label>
         <input type='password' name='mot_de_passe' required><br>
-        <button type='submit' name='submit'>Inscription</button>
+        <input type='submit' value='inscription'>
             </form>";
         return $form;
     }
+
+
 
     public function enregistrerUtilisateur()
     {
@@ -86,18 +88,10 @@ class FormUtilisateur
         return true;
     }
 
-    public function updateUtilisateur()
-    {
-
-    }
-
-    public function deleteUtilisateur()
-    {
-
-    }
+   
 }
 
-/* if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST['nom']) || empty($_POST['prenom']) || empty($_POST['email']) || empty($_POST['mot_de_passe'])) {
         echo 'Veuillez compléter tous les champs.';
     } else {
@@ -119,7 +113,7 @@ class FormUtilisateur
         }
     }
 }
- */
+
 
     
 
