@@ -25,7 +25,7 @@ class FormUtilisateur
     {
         if ($mode === 'update') {
             Model::getInstance()->getById('utilisateur', $id);
-            return self::form($action);
+            return self::formUpdate($action);
         }
         return self::form($action);
     }
@@ -46,7 +46,25 @@ class FormUtilisateur
         return $form;
     }
 
+    public static function formUpdate($action)
+    {
+        $form = "<form action = $action method='POST'>
+        <label for='nom'>Changer de nom: </label>
+        <input type='text' name='nom' required><br>
 
+        <label for='prenom'>Changer de prénom: </label>
+        <input type='text' name='prenom' required><br>
+        
+        <label for='email'>Changer d'adresse email: </label>
+        <input type='email' name='email' required><br>
+
+        <label for='mot_de_passe_update'>Changer de mot de passe: </label>
+        <input type='password' name='mot_de_passe' required><br>
+
+        <button type='submit' name='submit'>Modifier</button>
+            </form>";
+        return $form;
+    }
 
     public function enregistrerUtilisateur()
     {

@@ -3,8 +3,8 @@
 echo '<a href=http://localhost/PHP_GestionProjet/>Accueil</a><br>';
 
 // affichage des différents projets
-foreach ($projets as $key => $projets) {
-    echo 'Projets: <a href=http://localhost/PHP_GestionProjet/?controller=ProjetController&method=displayProjet&id='.$projets->getID().'></a><br>';
+foreach ($projets as $key => $projet) {
+    echo '<li>Projets: <a href=http://localhost/PHP_GestionProjet/?controller=ProjetController&method=displayProjet&id='.$projet->getID().'>'.$projet->getNom().' description: '.$projet->getDescription().'</a></li><br>';
 }
 
 ?>
