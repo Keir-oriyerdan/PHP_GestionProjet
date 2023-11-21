@@ -24,7 +24,7 @@ class FormUtilisateur
     public static function createForm($action, $mode = 'create', $id = 0)
     {
         if ($mode === 'update') {
-            $livre = Model::getInstance()->getById('utilisateur', $id);
+            Model::getInstance()->getById('utilisateur', $id);
             return self::form($action);
         }
         return self::form($action);

@@ -6,7 +6,8 @@ use Madmax\Skrrr\app\AbstractController;
 use Madmax\Skrrr\app\Model;
 use Madmax\Skrrr\forms\FormUtilisateur;
 
-class UtilisateurController extends AbstractController {
+class UtilisateurController extends AbstractController
+{
 
     public function creerUtilisateur($data)
     {
@@ -32,11 +33,32 @@ class UtilisateurController extends AbstractController {
                 'nom' => $_POST['nom'],
                 'prenom' => $_POST['prenom'],
             ];
-            var_dump($datas);
             $this->creerUtilisateur($datas);
+        }
+        $form = [
+            'form' => FormUtilisateur::createForm('?controller=UtilisateurController&method=ajoutUtilisateur'),
+        ];
+        $this->render('ajoutUtilisateur.php', $form);
+    }
+
+    public function supprimerUtilisateur()
+    {
+        Model::getInstance()->deleteById('utilisateur', $_GET['id']);
+        $this->displayUtilisateurs();
+    }
+
+    public function updateUtilisateur()
+    {
+        if (isset($_POST['submit'])) {
+            $datas = [
+                'nom' => $_POST['nom'],
+                'prenom' => $_POST['prenom']
+            ];
+            Model::getInstance()->updateById('utilisateur', $_GET['id'], $datas);
+            $this->displayUtilisateurs();
         } else {
             $form = [
-                'form' => FormUtilisateur::createForm('?controller=UtilisateurController&method=ajoutUtilisateur'),
+                'form' => FormUtilisateur::createForm('?controller=UtilisateurController&method=updateUtilisateur&id=' . $_GET['id'], 'update', $_GET['id']),
             ];
             $this->render('ajoutUtilisateur.php', $form);
         }
