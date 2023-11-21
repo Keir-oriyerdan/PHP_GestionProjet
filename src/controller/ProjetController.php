@@ -41,4 +41,27 @@ class ProjetController extends AbstractController{
             $this->render('ProjetForm.php', $form);
         }
     }
+
+    public function supprimerProjet()
+    {
+        Model::getInstance()->deleteById('projet', $_GET['id']);
+        $this->displayProjets();
+    }
+
+    public function updateProjet()
+    {
+        if (isset($_POST['submit'])) {
+            $datas = [
+                'nom' => $_POST['nom'],
+                'description' => $_POST['description'],
+            ];
+            Model::getInstance()->updateById('projet', $_GET['id'], $datas);
+            $this->displayProjets();
+        } else {
+            $form = [
+                'form' => FormProjet::createForm('?controller=ProjetController&method=updateProjet&id=' . $_GET['id'], 'update', $_GET['id']),
+            ];
+            $this->render('ProjetForm.php', $form);
+        }
+    }
 }
