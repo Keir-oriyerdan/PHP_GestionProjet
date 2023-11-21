@@ -41,7 +41,7 @@ class FormUtilisateur
         <input type='email' name='email' required><br>
         <label for='mot_de_passe'>Mot de passe :</label>
         <input type='password' name='mot_de_passe' required><br>
-        <input type='submit' value='inscription'>
+        <button type='submit' name='submit'>Créer</button>
             </form>";
         return $form;
     }
@@ -91,7 +91,7 @@ class FormUtilisateur
    
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+/* if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST['nom']) || empty($_POST['prenom']) || empty($_POST['email']) || empty($_POST['mot_de_passe'])) {
         echo 'Veuillez compléter tous les champs.';
     } else {
@@ -112,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     }
-}
+} */
 
 
     
