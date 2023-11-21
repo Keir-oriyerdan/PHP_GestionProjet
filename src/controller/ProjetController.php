@@ -3,7 +3,8 @@
 namespace Madmax\Skrrr\controller;
 
 use Madmax\Skrrr\app\AbstractController;
-use Madmax\Skrrr\App\Model;
+use Madmax\Skrrr\app\Model;
+use Madmax\Skrrr\forms\FormProjet;
 
 class ProjetController extends AbstractController{
 
@@ -25,6 +26,21 @@ class ProjetController extends AbstractController{
             'nom' => 'projet 1',
         ];
         Model::getInstance()->save('projet', $datas);
+    }
+
+    public function ajoutProjet()
+    {
+        if (isset($_POST['nom'])) {
+            $datas = [
+                'nom' => $_POST['nom'],
+            ];
+            $this->createProjet($datas);
+        } else {
+            $form = [
+                'form' => FormProjet::createForm('?controller=UtilisateurController&method=ajoutUtilisateur'),
+            ];
+            $this->render('ProjetForm.php', $form);
+        }
     }
 
     // public function updateProjet()
