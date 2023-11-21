@@ -16,6 +16,7 @@ class FormProjet
         $this->description = $description;
     }
 
+    // création du formulaire pour créer un projet
     public static function createForm($action, $mode = 'create', $id = 0)
     {
         if ($mode === 'update') {
@@ -25,6 +26,7 @@ class FormProjet
         return self::form($action);
     }
 
+    // formulaire pour créer un projet
     public static function form($action)
     {
         $form = "<form action = $action method='POST'>
