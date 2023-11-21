@@ -47,8 +47,13 @@ class SecurityController {
         exit();
     }
 
-    public function checkAuthorization()
+    // rediriger vers l'accueil si l'utilisateur n'est pas connecté
+    public function Redirection()
     {
+        if(isset($_SESSION['username'])){
+            header('Location: /');
+            exit;
+        }
     }
 
     public function protectAgainstSQLInjection($input)
