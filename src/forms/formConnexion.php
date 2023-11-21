@@ -65,9 +65,9 @@ class FormConnexion
         $pdo = new PDO("mysql:host=localhost;dbname=projet1b", "username", "mot_de_passe");
 
         // Préparer la requête
-        $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username");
+        $stmt = $pdo->prepare("SELECT * FROM utilisateur WHERE username = :username");
 
-        // Liaison des paramètres
+        // Liaison des paramètres.
         $stmt->bindParam(':username', $id_utilisateur, PDO::PARAM_STR);
 
         // Exécution de la requête
@@ -92,7 +92,7 @@ class FormConnexion
         $_SESSION['connected'] = 'connecté';
         return true;
 
-        if(isset($_SESSION['username'])){
+        if(!isset($_SESSION['username'])){
             header('Location:index.php');
             exit;
         }
