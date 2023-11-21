@@ -34,7 +34,7 @@ class FormProjet
         <label for='text'>Description: </label>
         <input type='text' name='description' required><br>
         
-        <input type='submit' value='créer'>
+        <button type='submit' name='submit'>Créer</button>
             </form>";
         return $form;
     }

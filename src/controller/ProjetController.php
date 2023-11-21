@@ -38,9 +38,11 @@ class ProjetController extends AbstractController{
             $datas = [
                 'nom' => $_POST['nom'],
                 'description' => $_POST['description'],
+                'ID_Administrateur' => $_POST['admin'],
             ];
             var_dump($datas);
             $this->createProjet($datas);
+            $this->displayProjets();
         } else {
             $form = [
                 'form' => FormProjet::createForm('?controller=ProjetController&method=ProjetForm'),
