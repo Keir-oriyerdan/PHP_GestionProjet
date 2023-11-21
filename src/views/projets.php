@@ -8,4 +8,4 @@ foreach ($projets as $key => $projets) {
 
 ?>
 
-<a href="http://localhost/PHP_GestionProjet/?controller=ProjetController&method=creationProjet"><button type="button">Crée un Projet</button></a>
+<a href="http://localhost/PHP_GestionProjet/?controller=ProjetController&method=ProjetForm"><button type="button">Crée un Projet</button></a>

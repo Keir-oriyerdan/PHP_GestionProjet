@@ -3,9 +3,15 @@
 namespace Madmax\Skrrr\controller;
 
 use Madmax\Skrrr\app\AbstractController;
-use Madmax\Skrrr\App\Model;
+use Madmax\Skrrr\app\Model;
+use Madmax\Skrrr\forms\FormProjet;
 
 class ProjetController extends AbstractController{
+    
+    public function createProjet($data)
+    {
+        Model::getInstance()->save('projet', $data);
+    }
 
     public function displayProjets()
     {
@@ -13,26 +19,46 @@ class ProjetController extends AbstractController{
         $this->render('projets.php', ['projets' => $results]);
     }
 
-    public function creationProjet()
+    public function displayProjet()
+    {
+        $result = Model::getInstance()->getById('projet', $_GET['id']);
+        $this->render('projet.php', ['projet' => $result]);
+    }
+
+    /* public function ProjetForm()
     {
         $results = Model::getInstance()->readAll('projet');
-        $this->render('creationProjet.php', ['creationProjet' => $results]);
+        $this->render('ProjetForm.php', ['creationProjet' => $results]);
+    } */
+
+
+    public function ProjetForm()
+    {
+        if (isset($_POST['submit'])) {
+            $datas = [
+                'nom' => $_POST['nom'],
+                'description' => $_POST['description'],
+            ];
+            var_dump($datas);
+            $this->createProjet($datas);
+        } else {
+            $form = [
+                'form' => FormProjet::createForm('?controller=ProjetController&method=ProjetForm'),
+            ];
+            $this->render('ProjetForm.php', $form);
+        }
     }
 
-    public function createProjet()
+    /* public function updateProjet()
     {
         $datas = [
-            'nom' => 'projet 1',
+            'titre' => $_GET['titre'],
         ];
-        Model::getInstance()->save('projet', $datas);
-    }
 
-    // public function updateProjet()
-    // {
-    //     $datas = [
-    //         'titre' => $_GET['titre'],
-    //     ];
-
-    //     Model::getInstance()->updateById('projet',$_GET['id'], $datas);
-    // }
+        Model::getInstance()->updateById('projet',$_GET['id'], $datas);
+    } 
+    
+    ?controller=ProjetController&method=ProjetForm
+    
+    */
 }
