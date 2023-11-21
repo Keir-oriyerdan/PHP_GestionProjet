@@ -56,7 +56,8 @@ class SecurityController {
     foreach($_SESSION as $key => $value) {
         unset($_SESSION[$key]);
     }
-
+    // La session est détruite suite à la déconnexion.
+    session_destroy();
     // Redirige l'utilisateur vers la page d'accueil.
     header("Location: /index.php");
     exit();
@@ -75,7 +76,6 @@ class SecurityController {
 
     public static function isConnected()
     {
-        
             // Démarrer la session (si ce n'est pas déjà fait)
             if (session_status() == PHP_SESSION_NONE) {
                 session_start();
