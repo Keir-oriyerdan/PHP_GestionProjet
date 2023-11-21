@@ -38,7 +38,7 @@ class FormConnexion
         <input type='text' name='username' class='form-control' autocomplete='username' required autofocus>
         <label for='password'>Mot de passe</label>
         <input type='password' name='password' id='password' class='form-control'>
-        <button class='btn btn-lg btn-primary' type='submit' name='submit'>
+        <button class='btn' type='submit' name='submit'>
             Se connecter
         </button>
             </form>";
@@ -67,7 +67,7 @@ class FormConnexion
         // Préparer la requête
         $stmt = $pdo->prepare("SELECT * FROM utilisateur WHERE username = :username");
 
-        // Liaison des paramètres.
+        // Liaison des paramètres
         $stmt->bindParam(':username', $id_utilisateur, PDO::PARAM_STR);
 
         // Exécution de la requête
@@ -89,8 +89,10 @@ class FormConnexion
         }
 
         // Si tout est correct, la connexion est faite.
-        $_SESSION['connected'] = 'connecté';
+       if (isset($_SESSION['connected'])){
         return true;
+       }
+        
 
         if(!isset($_SESSION['username'])){
             header('Location:index.php');

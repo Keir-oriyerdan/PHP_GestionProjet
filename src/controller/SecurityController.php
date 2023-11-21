@@ -2,8 +2,10 @@
 
 namespace Madmax\Skrrr\controller;
 
+use Madmax\Skrrr\views\header;
 use Madmax\Skrrr\app\AbstractController;
 use Madmax\Skrrr\app\Model;
+
 
 class SecurityController {
 
@@ -55,18 +57,34 @@ class SecurityController {
     // rediriger vers l'accueil si l'utilisateur n'est pas connecté
     public function Redirection()
     {
-        if(isset($_SESSION['username'])){
+        if(isset($_SESSION['utilisateur'])){
             header('Location: /');
             exit;
         }
     }
 
+    public static function isConnected()
+    {
+        
+            // Démarrer la session (si ce n'est pas déjà fait)
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }
+        
+            // Vérifier si la clé 'username' est définie dans la session
+            return true;
+        
+    }
+
     public function protectAgainstSQLInjection($input)
     {
+
     }
 
     public function handleSession()
     {
     }
+
+
 
 }
