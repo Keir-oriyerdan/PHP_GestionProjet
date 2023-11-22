@@ -131,4 +131,43 @@ class Model extends PDO
         $preparedRequest = $this->prepare($sql);
         return $this->exec($preparedRequest);
     }
+
+    public function getPrioriteFromTache()
+    {
+        $sql = 'SELECT priorite.Niveau_Priorite FROM priorite 
+        JOIN tache ON tache.ID_Priorite = priorite.ID 
+        WHERE tache.ID = '.$_GET['id'];
+        $preparedRequest = $this->prepare($sql);
+        return $this->exec($preparedRequest);
+    }
+
+    public function getDataFromEntity(array $datas, $entity, array $joinedEntities)
+    {
+        /* En rentrant un tableau permet de choisir les entités de sortie */
+        $sql = 'SELECT ';
+        $count = count($datas);
+        $i = 0;
+        foreach ($datas as $value) {
+            $sql .= htmlspecialchars($value);
+            if ($i < $count) {
+                $sql .= ', ';
+            }
+            $i++;
+        }
+        $savedEntity = ''; //variable permettant de sauver l'entité precédente afin de faire les jointures
+        /* Permet de créer toutes les jointures en fonction du tableau $joinedEntities */
+        foreach ($joinedEntities as $joinedEntity) {
+            if ($count === 0) {
+                $sql .= ' FROM '.htmlspecialchars($entity);
+                $sql .= ' JOIN '.htmlspecialchars($joinedEntity).' ON '.htmlspecialchars($joinedEntity).'.ID_'.htmlspecialchars(ucfirst($entity)).' = '.htmlspecialchars($entity).'.ID';
+                $savedEntity = $joinedEntity;
+            } else {
+                $sql .= ' JOIN '.htmlspecialchars($joinedEntity).' ON '.htmlspecialchars($joinedEntity).'.ID_'.htmlspecialchars(ucfirst($savedEntity)).' = '.htmlspecialchars($savedEntity).'.ID';
+                $savedEntity = $joinedEntity;
+            }
+        }
+        $sql .= 'WHERE '.htmlspecialchars($savedEntity).' = '.$_GET['id'];
+        $preparedRequest = $this->prepare($sql);
+        return $this->exec($preparedRequest);
+    }
 }
