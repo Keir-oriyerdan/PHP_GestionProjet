@@ -5,10 +5,7 @@
     list-style: none;
     text-decoration: none;
     overflow-x: hidden;
-}
-header{
-width: 100vw;
-
+    overflow-y: hidden;
 }
 body{
     width: 100vw;
@@ -16,4 +13,47 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: #FEFAE0;
 }
+nav{
+    width: 100vw;
+    height: 125px;
+    background-color: #283618;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ul{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width:75% ;
+  }
+
+  ul li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 225px;
+    height: 65px;
+    border-radius: 20px;
+    background-color: #606C38;
+  }
+  ul li:hover, ul li:nth-child(5):hover{
+    background-color: #DDA15E;
+  }
+  ul li:nth-child(5){
+    background-color: #BC6C25;
+    border: solid 3px #BC6C25;
+  }
+  ul li:nth-child(5) a{
+    color: black;
+  }
+
+  ul li a{
+    color: black;
+    font-size: 1.5em;
+    text-align: center;
+  }

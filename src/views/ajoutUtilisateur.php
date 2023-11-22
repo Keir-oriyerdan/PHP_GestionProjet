@@ -11,9 +11,15 @@
     <link rel="stylesheet" href="./css/style.css"> 
 </head>
 <body>
+    <header>
+        <?php
+        echo '<li><a href=?controller=IndexController&method=index>Accueil</a></li>';
+        ?>
+    </header>
+    <section>
     <?php
-    echo '<a href=?controller=IndexController&method=index>Accueil</a><br><br>';
-    echo $form;
-    ?>
+        echo $form;
+        ?>
+    </section>
 </body>
 </html>
