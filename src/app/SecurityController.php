@@ -5,9 +5,11 @@ namespace Madmax\Skrrr\app;
 use Madmax\Skrrr\views\header;
 use Madmax\Skrrr\app\AbstractController;
 use Madmax\Skrrr\app\Model;
+use Madmax\Skrrr\forms\FormConnexion;
 use PDO;
 
-class SecurityController {
+class SecurityController
+{
 
     private $id_utilisateur;
     private $username;
@@ -32,33 +34,16 @@ class SecurityController {
     }
 
     // Validation des identifiants demandés.
-    private function validateIds($username, $motDePasse, $email)
+    private function validateIds()
     {
-        
-
-        // Si l'utilisateur, le mot de passe est correct & l'email correspondent c'est bon.
-        if ($username && password_verify($motDePasse, $username['mot_de_passe']) && $email === $username['email']) {
-            // Hacher le mot de passe de manière sécurisée
-            $hashedPassword = password_hash($motDePasse, PASSWORD_BCRYPT);
-
-            // Valider l'email
-            $email = filter_var($email, FILTER_VALIDATE_EMAIL);
-            if ($email === false) {
-                // si email non valide, message d'erreur s'affiche.
-                $errorMessage = "L'email fourni n'est pas valide.";
-               
-                echo $errorMessage;
-                //redirection si erreur
-                header("Location: /?controller=IndexController&method=index>Accueil");
-                exit();
-            }
-
+        // Si l'utilisateur et le mot de passe sont corrects c'est bon. Il faut reprendre car pas fini.
+        if (isset($_POST['submit']) && $_POST['username'] === Model::getInstance()->getByAttribute('utilisateur', 'Username', $_POST['username']) && password_verify($_POST['password'], Model::getInstance()->getByAttribute('utilisateur', 'Username', $_POST['username'], '=', 'Password'))) {
             // Stocker l'ID de l'utilisateur dans la session
-            $_SESSION['id_utilisateur'] = $username['id_utilisateur'];
-
+            $_SESSION['username'] = $_POST['username'];
             // Regénérer l'ID de session si l'authentification est réussie
-            session_regenerate_id(true);
+            return true;
         }
+        return false;
     }
 
     public function deconnexion()
@@ -67,7 +52,7 @@ class SecurityController {
         session_start();
 
         // Parcourir les données de session.
-        foreach($_SESSION as $key => $value) {
+        foreach ($_SESSION as $key => $value) {
             unset($_SESSION[$key]);
         }
         // La session est détruite suite à la déconnexion.
@@ -75,6 +60,14 @@ class SecurityController {
         // Redirige l'utilisateur vers la page d'accueil.
         header("Location: /?controller=IndexController&method=index>Accueil");
         exit();
+    }
+
+    public function connect()
+    {
+        FormConnexion::createForm('?controller=SecurityController&method=connect');
+        if ($this->validateIds()) {
+            # code...
+        }
     }
 
     public function protectAgainstSQLInjection($input)
@@ -85,4 +78,3 @@ class SecurityController {
     {
     }
 }
-
