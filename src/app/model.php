@@ -132,6 +132,11 @@ class Model extends PDO
 
     public function getAdminByProjet()
     {
-        $sql = 
+        $sql = 'SELECT utilisateur.Nom, utilisateur.Prenom FROM utilisateur 
+        JOIN administrateur ON administrateur.ID_Utilisateur = utilisateur.ID
+        JOIN projet ON projet.ID_Administrateur = administrateur.ID 
+        WHERE projet.ID = '.$_GET['id'];
+        $preparedRequest = $this->prepare($sql);
+        return $this->exec($preparedRequest);
     }
 }
