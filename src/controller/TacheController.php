@@ -5,7 +5,25 @@ namespace Madmax\Skrrr\controller;
 use Madmax\Skrrr\app\AbstractController;
 use Madmax\Skrrr\controller\interfaces\EtatCycle;
 use Madmax\Skrrr\controller\interfaces\CycleNonDebute;
+use Madmax\Skrrr\app\Model;
 
-class Tache extends AbstractController {
-    
+class TacheController extends AbstractController {
+
+    private EtatCycle $etattache;
+
+    public function __construct()
+    {
+        $this->etattache = new CycleNonDebute();
+    }
+
+    public function EtatTache()
+    {
+        $this->etattache = $this->etattache->EtatNonDebute();
+    } 
+
+    public function getPrioTache()
+    {
+        $result = Model::getInstance()->getById('projet', $_GET['id']);
+        $this->render('projet.php', ['projet' => $result]);
+    }
 }

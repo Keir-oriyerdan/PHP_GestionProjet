@@ -8,3 +8,4 @@ echo 'Description: '.$projet->getDescription().'<br>';
 echo 'Administrateur: '.'<br>';
 echo 'Participant: '.'<br>';
 echo 'Tache: '.'<br>';
+echo '(TEMPO)id projet: '.$projet->getPrioTache();
