@@ -32,15 +32,15 @@ class FormUtilisateur
 
     public static function form($action)
     {
-        $form = "<form action = $action method='POST'>
+        $form = "<form action = $action method='POST' class='forminscription'>
         <label for='nom'>Nom :</label>
-        <input type='text' name='nom' required><br>
+        <input type='text' name='nom' required placeholder='Nom'><br>
         <label for='prenom'>Prénom :</label>
-        <input type='text' name='prenom' required><br>
+        <input type='text' name='prenom' required placeholder='Prénom'><br>
         <label for='email'>Email :</label>
-        <input type='email' name='email' required><br>
+        <input type='email' name='email' required placeholder='Email'><br>
         <label for='mot_de_passe'>Mot de passe :</label>
-        <input type='password' name='mot_de_passe' required><br>
+        <input type='password' name='mot_de_passe' required placeholder='Mot de passe'><br>
         <button type='submit' name='submit'>Créer</button>
             </form>";
         return $form;
@@ -48,7 +48,7 @@ class FormUtilisateur
 
     public static function formUpdate($action)
     {
-        $form = "<form action = $action method='POST'>
+        $form = "<form action = $action method='POST' class='formupdate'>
         <label for='nom'>Changer de nom: </label>
         <input type='text' name='nom' required><br>
 
