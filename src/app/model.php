@@ -42,10 +42,10 @@ class Model extends PDO
         return $query->fetchAll(PDO::FETCH_CLASS, Config::ENTITY . ucfirst($entity))[0];
     }
 
-    public function getByAttribute($entity, $attribute, $value, $comp = '=')
+    public function getByAttribute($entity, $attribute, $value, $comp = '=', $select = '*')
     {
         // SELECT * FROM table WHERE attribute = value
-        $query = $this->query("SELECT * FROM $entity WHERE $attribute $comp '$value'");
+        $query = $this->query("SELECT ".$select." FROM $entity WHERE $attribute $comp '$value'");
         return $query->fetchAll(PDO::FETCH_CLASS, Config::ENTITY . ucfirst($entity));
     }
 
@@ -104,41 +104,6 @@ class Model extends PDO
     {
         $sql = "DELETE from $entity WHERE id = '$id'";
         $this->exec($sql);
-    }
-
-    public function getProjetAdmins()
-    {
-        $sql = "SELECT * FROM projet JOIN administrateur ON projet.ID_Administrateur = administrateur.ID
-        JOIN utilisateur ON administrateur.ID_Utilisateur = utilisateur.ID
-        WHERE administrateur.ID_Utilisateur = ".$_SESSION['ID'];
-        $preparedRequest = $this->prepare($sql);
-        return $this->exec($preparedRequest);
-    }
-
-    public function readAllAdmin()
-    {
-        $sql = "SELECT utilisateur.Nom, utilisateur.Prenom FROM administrateur JOIN utilisateur ON administrateur.ID_Utilisateur = utilisateur.ID";
-        $preparedRequest = $this->prepare($sql);
-        return $this->exec($preparedRequest);
-    }
-
-    public function getAdminByProjet()
-    {
-        $sql = 'SELECT utilisateur.Nom, utilisateur.Prenom FROM utilisateur 
-        JOIN administrateur ON administrateur.ID_Utilisateur = utilisateur.ID
-        JOIN projet ON projet.ID_Administrateur = administrateur.ID 
-        WHERE projet.ID = '.$_GET['id'];
-        $preparedRequest = $this->prepare($sql);
-        return $this->exec($preparedRequest);
-    }
-
-    public function getPrioriteFromTache()
-    {
-        $sql = 'SELECT priorite.Niveau_Priorite FROM priorite 
-        JOIN tache ON tache.ID_Priorite = priorite.ID 
-        WHERE tache.ID = '.$_GET['id'];
-        $preparedRequest = $this->prepare($sql);
-        return $this->exec($preparedRequest);
     }
 
     public function getDataFromEntity(array $datas, $entity, array $joinedEntities)

@@ -29,9 +29,13 @@ class UtilisateurController extends AbstractController
     public function ajoutUtilisateur()
     {
         if (isset($_POST['submit'])) {
+            $password = $_POST['password'];
+            password_hash($password, PASSWORD_BCRYPT);
             $datas = [
                 'nom' => $_POST['nom'],
                 'prenom' => $_POST['prenom'],
+                'Email' => $_POST['email'],
+                'password' => $password,
             ];
             $this->creerUtilisateur($datas);
         }
