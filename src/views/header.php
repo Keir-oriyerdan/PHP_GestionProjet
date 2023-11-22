@@ -18,7 +18,7 @@ use Madmax\Skrrr\app\SecurityController;
             <li><a href="?controller=ProjetController&method=displayProjets">Voir les projets</a></li>
            
             <li><a href="?controller=EmpruntController&method=displayEmprunts">Emprunts</a></li>
-            <li><a href="?controller=SecurityController&method=deconnexion">Déconnexion</a></li>
+            
         </ul>
     </nav>
 </header>
