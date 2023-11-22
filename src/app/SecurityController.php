@@ -1,6 +1,6 @@
 <?php
 
-namespace Madmax\Skrrr\controller;
+namespace Madmax\Skrrr\app;
 
 use Madmax\Skrrr\views\header;
 use Madmax\Skrrr\app\AbstractController;

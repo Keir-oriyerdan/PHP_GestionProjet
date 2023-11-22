@@ -1,8 +1,8 @@
 <?php
 
-namespace Madmax\Skrrr\controller;
+namespace Madmax\Skrrr\app;
 
-use Madmax\Skrrr\controller\SecurityController;
+use Madmax\Skrrr\app\SecurityController;
 
 ?>
 <header>
