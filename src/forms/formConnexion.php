@@ -24,7 +24,7 @@ class FormConnexion
     public static function createForm($action, $mode = 'create', $id = 0)
     {
         if ($mode === 'update') {
-            $livre = Model::getInstance()->getById('utilisateur', $id);
+            $id_utilisateur = Model::getInstance()->getById('utilisateur', $id);
             return self::form($action);
         }
         return self::form($action);
@@ -47,16 +47,20 @@ class FormConnexion
 
 
     function VerifConnexion()
-{
+    {
+    //$error est initialisée à false. 
+    //Utilisé pour signaler s'il y a erreur aprés vérif des données.
     $error = false;
-
+    // verif si le form a été soumis
     if (isset($_POST['submit'])) {
+        // récup des données du formulaire.
         $id_utilisateur = $_POST['username'];
         $email = $_POST['email'];
         $motDePasse = $_POST['mot_de_passe'];
 
-        // verifier que l'email est valide
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        // validation et verif que l'email est valide
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
+        {
             $error = 'Veuillez entrer une adresse e-mail valide.';
             return $error;
         }
