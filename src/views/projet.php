@@ -7,3 +7,4 @@ echo 'Nom du projet: '.$projet->getNom().'<br>';
 echo 'Description: '.$projet->getDescription().'<br>';
 echo 'Administrateur: '.'<br>';
 echo 'Participant: '.'<br>';
+echo 'Tache: '.'<br>';
