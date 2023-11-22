@@ -23,7 +23,6 @@ class TacheController extends AbstractController {
 
     public function getPrioTache()
     {
-        $result = Model::getInstance()->getById('projet', $_GET['id']);
-        $this->render('projet.php', ['projet' => $result]);
+        $prioritetache = Model::getInstance()->getPrioriteFromTache();
     }
 }

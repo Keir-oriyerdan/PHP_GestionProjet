@@ -9,4 +9,4 @@ echo 'Administrateur: '.'<br>';
 echo 'Participant: '.'<br>';
 echo 'Tache: '.'<br>';
 echo 'Prio de la tache: '.'<br>';
-echo '(TEMPO)admin du proj: '.$projet->getAdminByProjet().'<br>';
+echo '(TEMPO)admin du proj: '.$projet->getAdmin().'<br>';
