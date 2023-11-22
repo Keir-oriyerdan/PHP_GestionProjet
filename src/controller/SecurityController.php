@@ -10,15 +10,16 @@ use Madmax\Skrrr\app\Model;
 class SecurityController {
 
     private $id_utilisateur;
+    private $username;
     private $email;
     private $motDePasse;
 
-    public function IdentificationLogin($id_utilisateur, $motDePasse, $email)
+    public function IdentificationLogin($username, $motDePasse, $email)
     {
         // si les éléments suivants (utilisateur, mpd et email) sont valides, une session est créée.
-        if ($this->validateIds($id_utilisateur, $motDePasse, $email)) {
+        if ($this->validateIds($username, $motDePasse, $email)) {
             
-            $this->createUserSession($id_utilisateur);
+            $this->createUserSession($username);
 
             header("Location: /index.php");
             exit();
@@ -26,33 +27,43 @@ class SecurityController {
             echo "Identifiants incorrects";
         }
     }
-
-    private function validateIds($id_utilisateur, $motDePasse, $email)
+     // Validation des identifiants demandés.
+    private function validateIds($username, $motDePasse, $email)
     {
 
-        $validId_utilisateur = "toto";
+        $validUsername = "toto";
         $validHashedmotdepasse = 'root/parenVadrouille';
         $validEmail = "momo@bmomo.fr";
 
-        return $id_utilisateur === $validId_utilisateur 
+        return $username === $validUsername 
         && password_verify($motDePasse, $validHashedmotdepasse) 
         && password_verify($email, $validEmail);
     }
 
-    private function createUserSession($id_utilisateur)
+    // Démarrage d'une session.
+    private function createUserSession($username)
     {
         session_start();
-        $_SESSION['utilisateur'] = $id_utilisateur;
+        $_SESSION['username'] = $username;
     }
 
     public function deconnexion()
-    {
-        session_start();
-        session_destroy();
+{
+    // Démarre la session si elle n'est pas déjà démarrée.
+    session_start();
 
-        header("Location: /index.php");
-        exit();
+    // Parcourt les données de session.
+    foreach($_SESSION as $key => $value) {
+        unset($_SESSION[$key]);
     }
+    // La session est détruite suite à la déconnexion.
+    session_destroy();
+    // Redirige l'utilisateur vers la page d'accueil.
+    header("Location: /index.php");
+    exit();
+}
+
+    
 
     // rediriger vers l'accueil si l'utilisateur n'est pas connecté
     public function Redirection()
@@ -65,7 +76,6 @@ class SecurityController {
 
     public static function isConnected()
     {
-        
             // Démarrer la session (si ce n'est pas déjà fait)
             if (session_status() == PHP_SESSION_NONE) {
                 session_start();
