@@ -64,4 +64,19 @@ class ProjetController extends AbstractController{
             $this->render('ProjetForm.php', $form);
         }
     }
+
+    public function getAdmin()
+    {
+        return Model::getInstance()->getDataFromEntity(
+            [
+                'utilisateur.Nom',
+                'utilisateur.Prenom',
+            ],
+            'utilisateur',
+            [
+                'administrateur',
+                'projet',
+            ],
+        );
+    }
 }
