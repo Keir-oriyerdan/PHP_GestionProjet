@@ -6,6 +6,7 @@
     text-decoration: none;
     overflow-x: hidden;
     overflow-y: hidden;
+    color: black;
 }
 body{
     width: 100vw;
@@ -17,18 +18,21 @@ body{
 }
 nav{
     width: 100vw;
-    height: 125px;
+    height: 150px;
     background-color: #283618;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
-
+nav img{
+    padding-left: 2%;
+    width: 150px;
+}
 ul{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width:75% ;
+    width:85% ;
   }
 
   ul li{
