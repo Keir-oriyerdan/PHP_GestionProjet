@@ -65,9 +65,9 @@ class ProjetController extends AbstractController{
         }
     }
 
-    public function getAdmin()
+    public static function getAdmin()
     {
-        return Model::getInstance()->getDataFromEntity(
+        $result = Model::getInstance()->getDataFromEntity(
             [
                 'utilisateur.Nom',
                 'utilisateur.Prenom',
@@ -78,5 +78,9 @@ class ProjetController extends AbstractController{
                 'projet',
             ],
         );
+        $datas = [
+            'administrateur' => $result,
+        ];
+        return $result;
     }
 }

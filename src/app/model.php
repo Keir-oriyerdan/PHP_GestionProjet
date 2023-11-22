@@ -145,7 +145,7 @@ class Model extends PDO
     {
         /* En rentrant un tableau permet de choisir les entités de sortie */
         $sql = 'SELECT ';
-        $count = count($datas);
+        $count = count($datas)-1;
         $i = 0;
         foreach ($datas as $value) {
             $sql .= htmlspecialchars($value);
@@ -154,20 +154,22 @@ class Model extends PDO
             }
             $i++;
         }
+        $i = 0;
+        $sql .= ' FROM '.htmlspecialchars($entity);
         $savedEntity = ''; //variable permettant de sauver l'entité precédente afin de faire les jointures
         /* Permet de créer toutes les jointures en fonction du tableau $joinedEntities */
         foreach ($joinedEntities as $joinedEntity) {
-            if ($count === 0) {
-                $sql .= ' FROM '.htmlspecialchars($entity);
+            if ($i === 0) {
                 $sql .= ' JOIN '.htmlspecialchars($joinedEntity).' ON '.htmlspecialchars($joinedEntity).'.ID_'.htmlspecialchars(ucfirst($entity)).' = '.htmlspecialchars($entity).'.ID';
                 $savedEntity = $joinedEntity;
             } else {
                 $sql .= ' JOIN '.htmlspecialchars($joinedEntity).' ON '.htmlspecialchars($joinedEntity).'.ID_'.htmlspecialchars(ucfirst($savedEntity)).' = '.htmlspecialchars($savedEntity).'.ID';
                 $savedEntity = $joinedEntity;
             }
+            $i++;
         }
-        $sql .= 'WHERE '.htmlspecialchars($savedEntity).' = '.$_GET['id'];
-        $preparedRequest = $this->prepare($sql);
-        return $this->exec($preparedRequest);
+        $sql .= ' WHERE '.htmlspecialchars($savedEntity).'.ID = '.$_GET['id'];
+        $query = $this->query($sql);
+        return $query->fetchAll(PDO::FETCH_CLASS, Config::ENTITY . 'Administrateur');
     }
 }
