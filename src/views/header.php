@@ -2,10 +2,7 @@
 
 namespace Madmax\Skrrr\controller;
 
-
 use Madmax\Skrrr\controller\SecurityController;
-
-
 
 ?>
 <header>

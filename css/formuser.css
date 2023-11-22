@@ -1,0 +1,69 @@
+body {
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Karla', sans-serif;
+    color: black;
+    list-style: none;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    background-color: #FEFAE0;
+  }
+.forminscription{
+    width: 75vw;
+    height: 600px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color:#283618;
+}
+  /*******FORMULAIRE INPUT*******/
+  .forminscription input
+   {
+    border: 2px solid white;
+    outline: none;
+    height: 50px;
+    width: 30%;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0);
+    margin-bottom: 1%;
+    padding-left: 1%;
+    font-size: 1.2em;
+  }
+  .forminscription label{
+    display: none;
+  }
+  
+  /*placeholder text opacity*/
+  .forminscription input::placeholder {
+    opacity: 1;
+  }
+  
+  /***********SUBMIT BUTTON*********/
+  .forminscription button {
+    outline: none;
+    border: 2px solid #DDA15E;
+    height: 50px;
+    border-radius: 50px;
+    width: 125px;
+    background-color: #DDA15E;
+    font-size: 1em;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+  }
+  /*hover*/
+  .forminscription button:hover {
+    background-color: #BC6C25;
+    width: 150px;
+  }
+  /*active*/
+  .forminscription button:active {
+    box-shadow: 0 2px #BC6C25;
+    transform: translateY(4px);
+    transform: scale(0.9);
+  } 
+  /*https://coolors.co/palette/606c38-283618-fefae0-dda15e-bc6c25*/
