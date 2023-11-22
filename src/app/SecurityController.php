@@ -5,7 +5,7 @@ namespace Madmax\Skrrr\app;
 use Madmax\Skrrr\views\header;
 use Madmax\Skrrr\app\AbstractController;
 use Madmax\Skrrr\app\Model;
-
+use PDO;
 
 class SecurityController {
 
@@ -14,87 +14,75 @@ class SecurityController {
     private $email;
     private $motDePasse;
 
-    public function IdentificationLogin($username, $motDePasse, $email)
+    public static function isConnected()
     {
-        // si les éléments suivants (utilisateur, mpd et email) sont valides, une session est créée.
-        if ($this->validateIds($username, $motDePasse, $email)) {
-            
-            $this->createUserSession($username);
+        // Démarrer la session si pas active.
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
 
-            header("Location: /index.php");
+        // Vérifiez si l'utilisateur est connecté, sinon redirection vers page accueil.
+        if (isset($_SESSION["id_utilisateur"])) { // remettre le !
+            echo '<a href=?controller=IndexController&method=index>Accueil</a>';
             exit();
         } else {
-            echo "Identifiants incorrects";
+            // Si l'authentification réussit, retourner vrai.
+            return true;
         }
     }
-     // Validation des identifiants demandés.
+
+    // Validation des identifiants demandés.
     private function validateIds($username, $motDePasse, $email)
     {
+        
 
-        $validUsername = "toto";
-        $validHashedmotdepasse = 'root/parenVadrouille';
-        $validEmail = "momo@bmomo.fr";
+        // Si l'utilisateur, le mot de passe est correct & l'email correspondent c'est bon.
+        if ($username && password_verify($motDePasse, $username['mot_de_passe']) && $email === $username['email']) {
+            // Hacher le mot de passe de manière sécurisée
+            $hashedPassword = password_hash($motDePasse, PASSWORD_BCRYPT);
 
-        return $username === $validUsername 
-        && password_verify($motDePasse, $validHashedmotdepasse) 
-        && password_verify($email, $validEmail);
-    }
+            // Valider l'email
+            $email = filter_var($email, FILTER_VALIDATE_EMAIL);
+            if ($email === false) {
+                // si email non valide, message d'erreur s'affiche.
+                $errorMessage = "L'email fourni n'est pas valide.";
+               
+                echo $errorMessage;
+                //redirection si erreur
+                header("Location: /?controller=IndexController&method=index>Accueil");
+                exit();
+            }
 
-    // Démarrage d'une session.
-    private function createUserSession($username)
-    {
-        session_start();
-        $_SESSION['username'] = $username;
+            // Stocker l'ID de l'utilisateur dans la session
+            $_SESSION['id_utilisateur'] = $username['id_utilisateur'];
+
+            // Regénérer l'ID de session si l'authentification est réussie
+            session_regenerate_id(true);
+        }
     }
 
     public function deconnexion()
-{
-    // Démarre la session si elle n'est pas déjà démarrée.
-    session_start();
-
-    // Parcourt les données de session.
-    foreach($_SESSION as $key => $value) {
-        unset($_SESSION[$key]);
-    }
-    // La session est détruite suite à la déconnexion.
-    session_destroy();
-    // Redirige l'utilisateur vers la page d'accueil.
-    header("Location: /index.php");
-    exit();
-}
-
-    
-
-    // rediriger vers l'accueil si l'utilisateur n'est pas connecté
-    public function Redirection()
     {
-        if(isset($_SESSION['utilisateur'])){
-            header('Location: /');
-            exit;
+        // Démarre la session si elle n'est pas déjà démarrée.
+        session_start();
+
+        // Parcourir les données de session.
+        foreach($_SESSION as $key => $value) {
+            unset($_SESSION[$key]);
         }
-    }
-
-    public static function isConnected()
-    {
-            // Démarrer la session (si ce n'est pas déjà fait)
-            if (session_status() == PHP_SESSION_NONE) {
-                session_start();
-            }
-        
-            // Vérifier si la clé 'username' est définie dans la session
-            return true;
-        
+        // La session est détruite suite à la déconnexion.
+        session_destroy();
+        // Redirige l'utilisateur vers la page d'accueil.
+        header("Location: /?controller=IndexController&method=index>Accueil");
+        exit();
     }
 
     public function protectAgainstSQLInjection($input)
     {
-
     }
 
     public function handleSession()
     {
     }
-
-
-
 }
+

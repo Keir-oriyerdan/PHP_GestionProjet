@@ -22,7 +22,7 @@ class Administrateur extends AbstractController {
         $index->index();
     }
 
-    public function isAdmin()
+    public function displayAdmins()
     {
         Model::getInstance()->readAll('administrateur');
     }
