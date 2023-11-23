@@ -14,19 +14,21 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #FEFAE0;
+    /* background-color: #FEFAE0; */
+    background-image: url(./../img/dev.png);
 }
 nav{
     width: 100vw;
-    height: 150px;
+    height: 100px;
     background-color: #283618;
+    opacity: 0.9;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 nav img{
     padding-left: 2%;
-    width: 150px;
+    width: 100px;
 }
 ul{
     display: flex;
@@ -40,8 +42,8 @@ ul{
     align-items: center;
     justify-content: center;
     text-align: center;
-    width: 225px;
-    height: 65px;
+    width: 100px;
+    height: 40px;
     border-radius: 20px;
     background-color: #606C38;
   }
@@ -58,6 +60,6 @@ ul{
 
   ul li a{
     color: black;
-    font-size: 1.5em;
+    font-size: 1em;
     text-align: center;
   }

@@ -2,10 +2,11 @@ header{
     width: 100vw;
     height: 100px;
     background-color: #283618;
+    opacity: 0.9;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 2%;
+    margin-bottom: 4%;
   }
   header li{
     display: flex;
@@ -30,8 +31,8 @@ header{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 75%;
-    height: 800px;
+    width: 50%;
+    height: 600px;
     background-color: #283618;
     border-radius: 25px;
 }
