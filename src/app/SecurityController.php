@@ -37,7 +37,7 @@ class SecurityController
     private function validateIds()
     {
         // Si l'utilisateur et le mot de passe sont corrects c'est bon. Il faut reprendre car pas fini.
-        if (isset($_POST['submit']) && $_POST['username'] === Model::getInstance()->getByAttribute('utilisateur', 'Username', $_POST['username']) && password_verify($_POST['password'], Model::getInstance()->getByAttribute('utilisateur', 'Username', $_POST['username'], '=', 'Password'))) {
+        if (isset($_POST['submit']) && htmlspecialchars($_POST['username']) === Model::getInstance()->getByAttribute('utilisateur', 'Username', htmlspecialchars($_POST['username'])) && password_verify($_POST['password'], Model::getInstance()->getByAttribute('utilisateur', 'Username', $_POST['username'], '=', 'Password'))) {
             // Stocker l'ID de l'utilisateur dans la session
             $_SESSION['username'] = $_POST['username'];
             // Regénérer l'ID de session si l'authentification est réussie
