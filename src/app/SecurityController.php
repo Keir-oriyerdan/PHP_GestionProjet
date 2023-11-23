@@ -26,7 +26,7 @@ class SecurityController
         // Vérifiez si l'utilisateur est connecté, sinon redirection vers page accueil.
         if (isset($_SESSION["id_utilisateur"])) { // remettre le !
             echo '<a href=?controller=IndexController&method=index>Accueil</a>';
-            exit();
+            return false;
         } else {
             // Si l'authentification réussit, retourner vrai.
             return true;
