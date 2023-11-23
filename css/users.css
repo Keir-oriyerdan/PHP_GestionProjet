@@ -29,12 +29,29 @@
         width: 100vw;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
         width: 75%;
         height: 800px;
         background-color: #283618;
         border-radius: 25px;
+    }
+    section li:nth-child(1){
+        width: 45%;
+        height: 75px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 20px;
+        margin-top: 4%;
+        margin-bottom: 4%;
+        background-color: #dda15e;
+        border: 4px solid #1c1e1c;
+        box-shadow: 0 0 0 1px #1c1e1c;
+    }
+    section li:nth-child(1) a{
+        font-weight: bold;
+        color: #1c1e1c;
+        font-size: 2.5em;
     }
     .userlist{
         width: 75%;

@@ -7,8 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/projets.css">
-    <link rel="stylesheet" href="./css/style.css"> 
 </head>
 <body>
     <header>
@@ -21,8 +21,8 @@
     // affichage des différents projets
     foreach ($projets as $key => $projet) {
         echo '<li class="projectlist">
-        Projets: 
-        <a href=?controller=ProjetController&method=displayProjet&id='.$projet->getID().'>'.$projet->getNom().'</a>
+        <a>Projets: </a>
+        <a href=http://localhost/PHP_GestionProjet/?controller=ProjetController&method=displayProjet&id='.$projet->getID().'>'.$projet->getNom().'</a>
         <a href=?controller=ProjetController&method=updateProjet&id='.$projet->getID().'>Modifier</a>  
         <a href=?controller=ProjetController&method=supprimerProjet&id='.$projet->getID().'>Supprimer</a>
         </li>';
