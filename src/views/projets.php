@@ -21,8 +21,8 @@
     // affichage des différents projets
     foreach ($projets as $key => $projet) {
         echo '<li class="projectlist">
-        <a>Projets: </a>
-        <a href=http://localhost/PHP_GestionProjet/?controller=ProjetController&method=displayProjet&id='.$projet->getID().'>'.$projet->getNom().'</a>
+        Projets: 
+        <a href=?controller=ProjetController&method=displayProjet&id='.$projet->getID().'>'.$projet->getNom().'</a>
         <a href=?controller=ProjetController&method=updateProjet&id='.$projet->getID().'>Modifier</a>  
         <a href=?controller=ProjetController&method=supprimerProjet&id='.$projet->getID().'>Supprimer</a>
         </li>';
