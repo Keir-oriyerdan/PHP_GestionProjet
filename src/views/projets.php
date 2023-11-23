@@ -14,6 +14,9 @@
 
 <body>
     <header>
+    <?php 
+    echo '<li><a href=?controller=IndexController&method=index>Accueil</a></li>';
+    ?>
         <?php
         echo '<a href=?controller=IndexController&method=index>Accueil</a><br>';
         ?>

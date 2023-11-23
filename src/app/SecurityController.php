@@ -37,7 +37,7 @@ class SecurityController
     private function validateIds()
     {
         // Si l'utilisateur et le mot de passe sont corrects c'est bon. Il faut reprendre car pas fini.
-        if (isset($_POST['submit']) && $_POST['username'] === Model::getInstance()->getByAttribute('utilisateur', 'Username', $_POST['username']) && password_verify($_POST['password'], Model::getInstance()->getByAttribute('utilisateur', 'Username', $_POST['username'], '=', 'Password'))) {
+        if (isset($_POST['submit']) && (htmlspecialchars($_POST['username']) === Model::getInstance()->getByAttribute('utilisateur', 'Username', htmlspecialchars($_POST['username']))) && password_verify(htmlspecialchars($_POST['password']), Model::getInstance()->getByAttribute('utilisateur', 'Username', htmlspecialchars($_POST['username']), '=', 'Password'))) {
             // Stocker l'ID de l'utilisateur dans la session
             $_SESSION['username'] = $_POST['username'];
             // Regénérer l'ID de session si l'authentification est réussie
@@ -48,15 +48,14 @@ class SecurityController
 
     public function deconnexion()
     {
-        // Démarre la session si elle n'est pas déjà démarrée.
-        session_start();
-
         // Parcourir les données de session.
-        foreach ($_SESSION as $key => $value) {
-            unset($_SESSION[$key]);
+        if (isset($_SESSION['connecté'])) {
+            foreach ($_SESSION as $key => $value) {
+                unset($_SESSION[$key]);
+            }
+            // La session est détruite suite à la déconnexion.
+            session_destroy();
         }
-        // La session est détruite suite à la déconnexion.
-        session_destroy();
         // Redirige l'utilisateur vers la page d'accueil.
         header("Location: /?controller=IndexController&method=index>Accueil");
         exit();
@@ -66,7 +65,10 @@ class SecurityController
     {
         FormConnexion::createForm('?controller=SecurityController&method=connect');
         if ($this->validateIds()) {
-            # code...
+            session_start();
+            $_SESSION['connecté'] = 'connecté';
+            $_SESSION['username'] = htmlspecialchars($_POST['username']);
+            $_SESSION['ID'] = Model::getInstance()->getByAttribute('utilisateur', 'Username', htmlspecialchars($_POST['username']), '=', 'ID');
         }
     }
 
