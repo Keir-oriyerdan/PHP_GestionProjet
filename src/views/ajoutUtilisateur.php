@@ -17,7 +17,7 @@
         ?>
     </header>
     <section>
-    <?php
+        <?php
         echo $form;
         ?>
     </section>

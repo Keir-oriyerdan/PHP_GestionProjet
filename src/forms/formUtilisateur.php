@@ -50,16 +50,16 @@ class FormUtilisateur
     {
         $form = "<form action = $action method='POST' class='formupdate'>
         <label for='nom'>Changer de nom: </label>
-        <input type='text' name='nom' required><br>
+        <input type='text' name='nom' required placeholder='Changer son nom'><br>
 
         <label for='prenom'>Changer de prénom: </label>
-        <input type='text' name='prenom' required><br>
+        <input type='text' name='prenom' required placeholder='Changer son prénom' ><br>
         
         <label for='email'>Changer d'adresse email: </label>
-        <input type='email' name='email' required><br>
+        <input type='email' name='email' required placeholder='Changer son adresse email' ><br>
 
         <label for='mot_de_passe_update'>Changer de mot de passe: </label>
-        <input type='password' name='mot_de_passe' required><br>
+        <input type='password' name='mot_de_passe' required placeholder='Changer son mot de passe'><br>
 
         <button type='submit' name='submit'>Modifier</button>
             </form>";
