@@ -8,8 +8,7 @@ use Madmax\Skrrr\app\Model;
 use Madmax\Skrrr\forms\FormConnexion;
 use PDO;
 
-class SecurityController
-{
+class SecurityController extends AbstractController {
 
     private $id_utilisateur;
     private $username;
@@ -24,7 +23,7 @@ class SecurityController
         }
 
         // Vérifiez si l'utilisateur est connecté, sinon redirection vers page accueil.
-        if (isset($_SESSION["id_utilisateur"])) { // remettre le !
+        if (!isset($_SESSION["id_utilisateur"])) { // remettre le !
             echo '<a href=?controller=IndexController&method=index>Accueil</a>';
             return false;
         } else {
@@ -34,42 +33,14 @@ class SecurityController
     }
 
     // Validation des identifiants demandés.
-    private function validateIds()
+    public static function validateIds()
     {
         // Si l'utilisateur et le mot de passe sont corrects c'est bon. Il faut reprendre car pas fini.
         if (isset($_POST['submit']) && (htmlspecialchars($_POST['username']) === Model::getInstance()->getByAttribute('utilisateur', 'Username', htmlspecialchars($_POST['username']))) && password_verify(htmlspecialchars($_POST['password']), Model::getInstance()->getByAttribute('utilisateur', 'Username', htmlspecialchars($_POST['username']), '=', 'Password'))) {
-            // Stocker l'ID de l'utilisateur dans la session
-            $_SESSION['username'] = $_POST['username'];
             // Regénérer l'ID de session si l'authentification est réussie
             return true;
         }
         return false;
-    }
-
-    public function deconnexion()
-    {
-        // Parcourir les données de session.
-        if (isset($_SESSION['connecté'])) {
-            foreach ($_SESSION as $key => $value) {
-                unset($_SESSION[$key]);
-            }
-            // La session est détruite suite à la déconnexion.
-            session_destroy();
-        }
-        // Redirige l'utilisateur vers la page d'accueil.
-        header("Location: /?controller=IndexController&method=index>Accueil");
-        exit();
-    }
-
-    public function connect()
-    {
-        FormConnexion::createForm('?controller=SecurityController&method=connect');
-        if ($this->validateIds()) {
-            session_start();
-            $_SESSION['connecté'] = 'connecté';
-            $_SESSION['username'] = htmlspecialchars($_POST['username']);
-            $_SESSION['ID'] = Model::getInstance()->getByAttribute('utilisateur', 'Username', htmlspecialchars($_POST['username']), '=', 'ID');
-        }
     }
 
     public function protectAgainstSQLInjection($input)

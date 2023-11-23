@@ -17,7 +17,7 @@ use Madmax\Skrrr\app\SecurityController;
             <li><a href="?controller=SecurityController&method=deconnexion">Déconnexion</a></li>
             <?php else : echo "Vous devez être connecté";?>
             <li><a href="?controller=UtilisateurController&method=ajoutUtilisateur">Créer un compte</a></li>
-            <li><a href="?controller=UtilisateurController&method=ajoutUtilisateur">Connection</a></li>
+            <li><a href="?controller=ConnexionController&method=connect">Connection</a></li>
             <?php endif; ?>
         </ul>
     </nav>

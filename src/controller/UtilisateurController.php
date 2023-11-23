@@ -37,6 +37,7 @@ class UtilisateurController extends AbstractController
                 'prenom' => $_POST['prenom'],
                 'Email' => $_POST['email'],
                 'password' => $password,
+                'Username' => $_POST['username'],
             ];
             $this->creerUtilisateur($datas);
         }
@@ -104,7 +105,7 @@ class UtilisateurController extends AbstractController
     public function isAdmin($id_utilisateur, $id_project)
     {
         // Vérifiez dans la table 'administrateur' si l'user avec l'ID $id_utilisateur est associé à ce projet en tant qu'administrateur
-        $adminData = Model::getInstance()->readAll('administrateur',['id_utilisateur' => $id_utilisateur, 'ID_Projet' => $this->getByID()]);
+        $adminData = Model::getInstance()->getByAttribute('administrateur', 'ID_Utilisateur', $_SESSION['ID'], '=', 'ID_Utilisateur');
 
         // Si l'entrée existe, l'user est admin
         return !empty($adminData);
@@ -135,7 +136,7 @@ class UtilisateurController extends AbstractController
     public function hasAdmin()
     {
         // Vérifiez dans la table 'administrateur' si ce projet a déjà un administrateur associé
-        $adminData = Model::getInstance()->readAll('administrateur',['ID_Projet'=> $this->getByID()]);
+        $adminData = Model::getInstance()->readAll('administrateur',['ID_Projet'=> Model::getInstance()->getByID('projet', $_GET['ID'])]);
 
         // Si l'entrée existe, le projet a déjà un administrateur
         return !empty($adminData);
@@ -153,7 +154,7 @@ class UtilisateurController extends AbstractController
         
     }
 
-    private function addUserToProject($id_projet, $id_utilisateur)
+    public function addUserToProject($id_projet, $id_utilisateur)
     {
         // !!! Verifier les entrées dupliquées ou d'autres vérifications de validation.
 

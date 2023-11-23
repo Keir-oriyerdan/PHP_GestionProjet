@@ -33,7 +33,7 @@ class FormConnexion
 
     public static function form($action)
     {
-        $form = "<form action = $action('security','login') method='POST'>
+        $form = "<form action = $action method='POST'>
         <label for='username'>Nom d'utilisateur</label>
         <input type='text' name='username' class='form-control' autocomplete='username' required autofocus>
         <label for='password'>Mot de passe</label>

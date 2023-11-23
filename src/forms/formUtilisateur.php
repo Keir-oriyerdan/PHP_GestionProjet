@@ -37,6 +37,8 @@ class FormUtilisateur
         <input type='text' name='nom' required placeholder='Nom'><br>
         <label for='prenom'>Prénom :</label>
         <input type='text' name='prenom' required placeholder='Prénom'><br>
+        <label for='username'>Nom d'utilisateur :</label>
+        <input type='text' name='username' required placeholder='Nom d utilisateur'><br>
         <label for='email'>Email :</label>
         <input type='email' name='email' required placeholder='Email'><br>
         <label for='mot_de_passe'>Mot de passe :</label>
