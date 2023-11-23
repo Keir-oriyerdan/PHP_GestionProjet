@@ -34,30 +34,39 @@ ul{
     align-items: center;
     width:85% ;
   }
-
   ul li{
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    width: 225px;
+    width: 275px;
     height: 65px;
     border-radius: 20px;
-    background-color: #606C38;
+    background-color: #BC6C25;
+    border: 4px solid #1c1e1c;
   }
-  ul li:hover, ul li:nth-child(5):hover{
+  ul li a{
+    color: #1c1e1c;
+    font-size: 1.7em;
+    font-weight: 700;
+  }
+  ul li:hover{
     background-color: #DDA15E;
   }
+  /**deconnexion bouton*/
   ul li:nth-child(5){
-    background-color: #BC6C25;
-    border: solid 3px #BC6C25;
+    background-color: #DDA15E;
+    border: solid 4px #1c1e1c;
+  }
+  ul li:nth-child(5):hover{
+    background-color: #1c1e1c;
+    border: solid 4px #FEFAE0;
   }
   ul li:nth-child(5) a{
-    color: black;
+    color: #1c1e1c;
+  }
+  ul li:nth-child(5):hover a{
+    color: #FEFAE0;
   }
 
-  ul li a{
-    color: black;
-    font-size: 1.5em;
-    text-align: center;
-  }
+ 
