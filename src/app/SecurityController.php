@@ -65,7 +65,10 @@ class SecurityController
     {
         FormConnexion::createForm('?controller=SecurityController&method=connect');
         if ($this->validateIds()) {
-            # code...
+            session_start();
+            $_SESSION['connecté'] = 'connecté';
+            $_SESSION['username'] = htmlspecialchars($_POST['username']);
+            $_SESSION['ID'] = Model::getInstance()->getByAttribute('utilisateur', 'Username', htmlspecialchars($_POST['username']), '=', 'ID');
         }
     }
 
