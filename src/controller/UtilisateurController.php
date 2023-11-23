@@ -5,7 +5,7 @@ namespace Madmax\Skrrr\controller;
 use Madmax\Skrrr\app\AbstractController;
 use Madmax\Skrrr\app\Model;
 use Madmax\Skrrr\forms\FormUtilisateur;
-use Madmax\Skrrr\controller\ProjetController;
+use Madmax\Skrrr\entity\Projet;
 
 class UtilisateurController extends AbstractController
 {
@@ -57,7 +57,8 @@ class UtilisateurController extends AbstractController
         if (isset($_POST['submit'])) {
             $datas = [
                 'nom' => $_POST['nom'],
-                'prenom' => $_POST['prenom']
+                'prenom' => $_POST['prenom'],
+                'username' => $_POST['username']
             ];
             Model::getInstance()->updateById('utilisateur', $_GET['id'], $datas);
             $this->displayUtilisateurs();
@@ -100,36 +101,64 @@ class UtilisateurController extends AbstractController
         Model::getInstance()->save('administrateur', $adminData);
     }
 
-    public function adminAddUser($id_utilisateur)
+    public function isAdmin($id_utilisateur, $id_project)
     {
-        $projectId = $_GET['ID_Projet']; // Obtenez l'ID du projet à partir de la requête.
+        // Vérifiez dans la table 'administrateur' si l'user avec l'ID $id_utilisateur est associé à ce projet en tant qu'administrateur
+        $adminData = Model::getInstance()->readAll('administrateur',['id_utilisateur' => $id_utilisateur, 'ID_Projet' => $this->getByID()]);
 
-        // Vérif si l'user actuel est connecté et s'il est un administrateur du projet.
-        $id_utilisateur = $_SESSION['id_utilisateur']; 
-        // on récup les détails du projet depuis la bdd.
-        $project = Model::getInstance()->getById('project', $projectId); 
+        // Si l'entrée existe, l'user est admin
+        return !empty($adminData);
 
-        if ($project instanceof ProjetController) {
-            // Vérif si l'utilisateur est l'admin du projet
-            if ($project->isAdmin($id_utilisateur)) {
-                // si User est un admin, il peut ajouter des users au projet.
-                $this->addUserToProject($projectId, $_POST['id_utilisateur']); // !! il faut valider et filtrer cette entrée
+        if ($id_project instanceof Projet) {
+            // Vérifiez si l'utilisateur est l'admin du projet
+            if ($id_project->isAdmin($id_utilisateur)) {
+                // Vérifiez si le projet a déjà un administrateur
+                if ($id_project->hasAdmin()) {
+                    // Le projet a déjà un admin
+                    echo "Le projet a déjà un administrateur. Vous ne pouvez pas ajouter un nouvel administrateur.";
+                } else {
+                    // Ajout de l'user comme admin du projet
+                    $this->addUserToProject($id_project, $_POST['id_utilisateur']); // !!! Il faut valider et filtrer cette entrée
+                }
             } else {
-                // si L'user n'est pas admin, on affiche un message d'erreur
+                
                 echo "Vous n'avez pas les droits d'administrateur pour effectuer cette action.";
             }
         } else {
-            // Si Le projet n'existe pas
+            // Si le projet n'existe pas
             echo "Le projet n'existe pas.";
         }
     }
 
-    private function addUserToProject($projectId, $id_utilisateur)
+    
+
+    public function hasAdmin()
+    {
+        // Vérifiez dans la table 'administrateur' si ce projet a déjà un administrateur associé
+        $adminData = Model::getInstance()->readAll('administrateur',['ID_Projet'=> $this->getByID()]);
+
+        // Si l'entrée existe, le projet a déjà un administrateur
+        return !empty($adminData);
+    }
+
+    public function adminAddUser($id_utilisateur)
+    {
+        $id_projet = $_GET['ID_Projet']; // Obtenez l'ID du projet à partir de la requête.
+
+        // Vérif si l'user actuel est connecté et s'il est un administrateur du projet.
+        $id_utilisateur = $_SESSION['id_utilisateur']; 
+        // on récup les détails du projet depuis la bdd.
+        $project = Model::getInstance()->getById('project', $id_projet); 
+
+        
+    }
+
+    private function addUserToProject($id_projet, $id_utilisateur)
     {
         // !!! Verifier les entrées dupliquées ou d'autres vérifications de validation.
 
         // Met à jour la table utilisateur pour associer l'user au projet
-        Model::getInstance()->updateById('utilisateur', $id_utilisateur, ['ID_Projet' => $projectId]);
+        Model::getInstance()->updateById('utilisateur', $id_utilisateur, ['ID_Projet' => $id_projet]);
 
         // affichage d'un message de réussite
         echo "Youpi ! L'utilisateur a été ajouté au projet.";
