@@ -6,7 +6,8 @@ use Madmax\Skrrr\app\AbstractController;
 use Madmax\Skrrr\controller\IndexController;
 use Madmax\Skrrr\app\Model;
 
-class Administrateur extends AbstractController {
+class AdministrateurController extends AbstractController {
+
     public function setAdmin()
     {
         $datas = [
