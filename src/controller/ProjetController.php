@@ -25,6 +25,7 @@ class ProjetController extends AbstractController{
         $this->render('projet.php', ['projet' => $result]);
     }
 
+    /* Création du formulaire pour crée des projets */
     public function ProjetForm()
     {
         if (isset($_POST['submit'])) {
@@ -48,6 +49,7 @@ class ProjetController extends AbstractController{
         $this->displayProjets();
     }
 
+    /* formulaire update du projet */
     public function updateProjet()
     {
         if (isset($_POST['submit'])) {
@@ -65,6 +67,7 @@ class ProjetController extends AbstractController{
         }
     }
 
+    /* afficher l'administratreur du projet */
     public static function getAdmin()
     {
         $result = Model::getInstance()->getDataFromEntity(

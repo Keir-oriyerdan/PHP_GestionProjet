@@ -2,12 +2,14 @@ header {
   width: 100vw;
   height: 100px;
   background-color: #283618;
+  opacity: 0.85;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 2%;
+  margin-bottom: 4%;
 }
-header li {
+.acceuil_formproj {
+  font-size: 1.5em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,6 +18,18 @@ header li {
   background-color: #606c38;
   border-radius: 20px;
 }
+.liste_formproj {
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  height: 65px;
+  background-color: #606c38;
+  border-radius: 20px;
+  margin-left: 10px;
+}
+
 header li:hover {
   background-color: #dda15e;
 }
@@ -30,8 +44,8 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 75%;
-  height: 800px;
+  width: 60%;
+  height: 600px;
   background-color: #283618;
   border-radius: 25px;
 }

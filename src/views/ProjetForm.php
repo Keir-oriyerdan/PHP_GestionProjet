@@ -13,10 +13,10 @@
 <body>
     <header>
     <?php 
-        echo '<li>
-        <a href=?controller=IndexController&method=index>Accueil</a>
-        <a href=?controller=ProjetController&method=displayProjets>Liste des projets</a>
-        </li>';
+        echo '
+        <a class="acceuil_formproj" href=?controller=IndexController&method=index>Accueil</a>
+        <a class="liste_formproj" href=?controller=ProjetController&method=displayProjets>Liste des projets</a>
+        ';
     ?>
     </header>
     <section>
