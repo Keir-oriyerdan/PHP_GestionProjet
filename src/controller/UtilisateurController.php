@@ -109,7 +109,7 @@ class UtilisateurController extends AbstractController
         // Si l'entrée existe, l'user est admin
         return !empty($adminData);
 
-        if ($id_project instanceof Projet) {
+       /* if ($id_project instanceof Projet) {
             // Vérifiez si l'utilisateur est l'admin du projet
             if ($id_project->isAdmin($id_utilisateur)) {
                 // Vérifiez si le projet a déjà un administrateur
@@ -127,7 +127,7 @@ class UtilisateurController extends AbstractController
         } else {
             // Si le projet n'existe pas
             echo "Le projet n'existe pas.";
-        }
+        }*/
     }
 
     
