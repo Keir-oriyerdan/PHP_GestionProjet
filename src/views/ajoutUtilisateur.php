@@ -17,6 +17,7 @@
         ?>
     </header>
     <section>
+        <li><a>Ajouter un utilisateur</a></li>
         <?php
         echo $form;
         ?>

@@ -17,6 +17,9 @@
         ?>
     </header>
     <section>
+        <li>
+            <a>Liste des utilisateurs</a>
+        </li>
         <?php
         foreach ($utilisateurs as $key => $utilisateur) {
             echo '<li class="userlist">
