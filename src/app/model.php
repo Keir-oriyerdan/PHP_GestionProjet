@@ -163,4 +163,12 @@ class Model extends PDO
         $query = $this->query($sql);
         return $query->fetchAll(PDO::FETCH_CLASS, Config::ENTITY . 'Administrateur');
     }
+
+    public function getTache()
+    {
+        $sql = 'select tache.Titre from tache
+        join projet on tache.ID_Projet = projet.ID';
+        $query = $this->query($sql);
+        return $query->fetchAll(PDO::FETCH_CLASS, Config::ENTITY . 'tache');
+    }
 }
