@@ -10,11 +10,7 @@ echo '<a href=?controller=ProjetController&method=displayProjets>Retour a la lis
 // $datasU = ProjetController::getUsers();
 $datasT = TacheController::displayTache();
 $datasP = PrioriteController::displayPrio();
-if (empty($datasT)) {
-    $datasT = 'Aucunes tâches';
-} else {
-    $datasT = $datasT[0]->getTitre();
-}
+
 // Récupère les données de l'administrateur du projet
 $datas = ProjetController::getAdmin();
 // Affiche le nom du projet 
@@ -23,14 +19,14 @@ echo 'Nom du projet: '.$projet->getNom().'<br>';
 echo 'Description: '.$projet->getDescription().'<br>';
 echo 'Administrateur: '.$datas[0]->Nom.' '.$datas[0]->Prenom.'<br>';
 echo 'Participant: '.'<br>';
-
-foreach ($datasT as $key => $tache) {
-    if ($key === 0) {
-        echo 'Taches: '.$datasT[$key]->getTitre().'<br>';  
-    } else {
-        echo $datasT[$key]->getTitre().'<br>';  
+echo 'Taches: ';
+if (empty($datasT)) {
+    echo 'Aucune tâche';
+} else {
+    foreach ($datasT as $key => $tache) {
+        echo $tache;
+        if (!empty($datasP)) {
+            echo 'Prio'.$datasP[$key];
+        }
     }
-     
 }
-
-echo 'Priorité de la tache: '.$datasP[0]->Niveau_Priorite.'<br>';
