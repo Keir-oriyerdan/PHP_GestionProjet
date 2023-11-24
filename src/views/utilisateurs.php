@@ -21,6 +21,8 @@
             <a>Liste des utilisateurs</a>
         </li>
         <?php
+        // parcourir la liste d'users
+        //& afficher des liens pour afficher/mettre à jour/supprimer chaque user. 
         foreach ($utilisateurs as $key => $utilisateur) {
             echo '<li class="userlist">
                     <a href=?controller=UtilisateurController&method=displayUtilisateur&id='.$utilisateur->getID().'>'.$utilisateur->getNom().' '.$utilisateur->getPrenom().'</a>

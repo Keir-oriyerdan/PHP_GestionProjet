@@ -6,6 +6,7 @@ use Madmax\Skrrr\app\model;
 
 class FormUtilisateur
 {
+    // Propriétés privées de la classe
     private $id;
     private $id_utilisateur;
     private $nom;
@@ -13,6 +14,7 @@ class FormUtilisateur
     private $email;
     private $motDePasse;
 
+    // Constructeur de la classe
     public function __construct($nom, $prenom, $email, $motDePasse)
     {
         $this->nom = $nom;
@@ -21,15 +23,19 @@ class FormUtilisateur
         $this->motDePasse = $motDePasse;
     }
 
+     // créer un formulaire en fonction du mode.
     public static function createForm($action, $mode = 'create', $id = 0)
     {
+        // Si le mode est 'update', on récupére les données utilisateur et on retourne le formulaire de mise à jour.
         if ($mode === 'update') {
             Model::getInstance()->getById('utilisateur', $id);
             return self::formUpdate($action);
         }
+        // sinon, on retourne le form de créa
         return self::form($action);
     }
 
+    // Formulaire de créa d'user.
     public static function form($action)
     {
         $form = "<form action = $action method='POST'>
@@ -48,6 +54,7 @@ class FormUtilisateur
         return $form;
     }
 
+    // form mise à jour d'user.
     public static function formUpdate($action)
     {
         $form = "<form action = $action method='POST'>
@@ -68,39 +75,41 @@ class FormUtilisateur
         return $form;
     }
 
+    //message de succès d'enregistrement
     public function enregistrerUtilisateur()
     {
         echo "L'utilisateur {$this->prenom} {$this->nom} a été enregistré !";
     }
 
+    // valider les données d'inscription
     public function validerInscription()
     {
         $error = [];
-
+         // verif que l'user remplit les champs obligatoires.
         if (empty($_POST['nom']) || empty($_POST['prenom']) || empty($_POST['email']) || empty($_POST['mot_de_passe'])) {
             $error[] = 'Veuillez compléter tous les champs.';
         }
-
+        // verif de la longueur du nom d'user.
         if (isset($_POST['username']) && strlen($_POST['username']) < 5) {
             $error[] = 'Le nom d\'utilisateur doit comporter 5 caractères minimum';
         }
-
-        if (isset($_POST['password'])) {
-            $password = $_POST['password'];
-
+         // verif du mot de passe
+        if (isset($_POST['mot_de_passe'])) {
+            $password = $_POST['mot_de_passe'];
+            // VERIF de la longueur du mdp.
             if (strlen($password) < 5) {
                 $error[] = 'Le mot de passe doit comporter 5 caractères minimum';
             }
-
+            //Vérif de la présence d'un caractère spécial dans le mot de passe.
             if (!preg_match('/[!@#$%^&*(),.?":{}|<>]/', $password)) {
                 $error[] = 'Le mot de passe doit contenir au moins un caractère spécial';
             }
         }
-
-        if (isset($_POST['password']) && isset($_POST['passwordverify']) && ($_POST['password'] !== $_POST['passwordverify'])) {
+        // Vérification de la correspondance des mots de passe en cas de créa ou mise à jour
+        if (isset($_POST['mot_de_passe']) && isset($_POST['passwordverify']) && ($_POST['mot_de_passe'] !== $_POST['passwordverify'])) {
             $error[] = 'Les mots de passe doivent être identiques';
         }
-
+        // Retourne les erreurs s'il y en a, sinon retourne true
         if (count($error) > 0) {
             return $error;
         }

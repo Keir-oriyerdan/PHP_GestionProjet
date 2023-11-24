@@ -159,7 +159,7 @@ class Model extends PDO
         }
          // Ajoute d'une condition WHERE pour filtrer les résultats par ID
         $sql .= ' WHERE '.htmlspecialchars($savedEntity).'.ID = '.$_GET['id'];
-        // Exécuter la requête SQL et retourner les résultats.
+        // Exécuter la requête SQL et retourner les résultats en objets.
         $query = $this->query($sql);
         return $query->fetchAll(PDO::FETCH_CLASS, Config::ENTITY . 'Administrateur');
     }
