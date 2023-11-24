@@ -55,13 +55,13 @@ class Model extends PDO
     }
 
      // Fonction pour récupérer des enregistrements en fonction d'un attribut et de sa valeur
-    public function getByAttribute($entity, $attribute, $value, $comp = '=', $select = '*')
+    public function getByAttribute($table, $attribute, $value, $comp = '=', $select = '*')
     {
         // SELECT * FROM table WHERE attribute = value
          // Construire et exécuter la requête SQL
-        $query = $this->query("SELECT ".$select." FROM $entity WHERE $attribute $comp '$value'");
+        $query = $this->query("SELECT ".$select." FROM $table WHERE $attribute $comp '$value'");
                 // Retourner les résultats sous forme d'objets de la classe correspondante
-        return $query->fetchAll(PDO::FETCH_CLASS, Config::ENTITY . ucfirst($entity));
+        return $query->fetchAll(PDO::FETCH_CLASS, Config::ENTITY . ucfirst($table));
     }
 
         // Fonction pour enregistrer un nouvel enregistrement dans une entité
