@@ -44,7 +44,7 @@ class SecurityController extends AbstractController
         if (array_key_exists(1, $password)) {
             $password = $password[1]->Password;
         }
-        // Si l'utilisateur et le mot de passe sont corrects c'est bon. Il faut reprendre car pas fini.
+        // Si l'utilisateur et le mot de passe sont corrects c'est bon.
         if (isset($_POST['submit']) && (htmlspecialchars($_POST['username']) === $username) && password_verify(htmlspecialchars($_POST['password']), $password)) {
             // Regénérer l'ID de session si l'authentification est réussie
             return true;

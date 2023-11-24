@@ -4,6 +4,7 @@ namespace Madmax\Skrrr\controller;
 
 use Madmax\Skrrr\app\AbstractController;
 use Madmax\Skrrr\app\Model;
+use Madmax\Skrrr\app\SecurityController;
 use Madmax\Skrrr\forms\FormProjet;
 
 class ProjetController extends AbstractController{
@@ -16,14 +17,20 @@ class ProjetController extends AbstractController{
     // fonction pour afficher tous les projets.
     public function displayProjets()
     {
+    if (SecurityController::isConnected()) {
         $results = Model::getInstance()->readAll('projet');
         $this->render('projets.php', ['projets' => $results]);
+        } else {
+            header("Location: ?controller=IndexController&method=index");
+        }
     }
     //fonction pour afficher Un projet.
     public function displayProjet()
     {
-        $result = Model::getInstance()->getById('projet', $_GET['id']);
-        $this->render('projet.php', ['projet' => $result]);
+        if (SecurityController::isConnected()) {
+            $result = Model::getInstance()->getById('projet', $_GET['id']);
+            $this->render('projet.php', ['projet' => $result]);
+        }
     }
     //fonction pour afficher gérer le formulaire de projet.
     public function ProjetForm()

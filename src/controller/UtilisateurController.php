@@ -5,6 +5,7 @@ namespace Madmax\Skrrr\controller;
 use Madmax\Skrrr\app\AbstractController;
 use Madmax\Skrrr\app\Model;
 use Madmax\Skrrr\forms\FormUtilisateur;
+use Madmax\Skrrr\app\SecurityController;
 use Madmax\Skrrr\entity\Projet;
 
 class UtilisateurController extends AbstractController
@@ -17,14 +18,22 @@ class UtilisateurController extends AbstractController
 
     public function displayUtilisateurs()
     {
-        $results = Model::getInstance()->readAll('utilisateur');
-        $this->render('utilisateurs.php', ['utilisateurs' => $results]);
+        if (SecurityController::isConnected()) {
+            $results = Model::getInstance()->readAll('utilisateur');
+            $this->render('utilisateurs.php', ['utilisateurs' => $results]);
+        } else {
+            header("Location: ?controller=IndexController&method=index");
+        }
     }
 
     public function displayUtilisateur()
     {
-        $result = Model::getInstance()->getById('utilisateur', $_GET['id']);
-        $this->render('utilisateur.php', ['utilisateur' => $result]);
+        if (SecurityController::isConnected()) {
+            $result = Model::getInstance()->getById('utilisateur', $_GET['id']);
+            $this->render('utilisateur.php', ['utilisateur' => $result]);
+        } else {
+            header("Location: ?controller=IndexController&method=index");
+        }
     }
 
     public function ajoutUtilisateur()
