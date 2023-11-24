@@ -98,7 +98,7 @@ class ProjetController extends AbstractController{
                 'utilisateur.Nom',
                 'utilisateur.Prenom',
             ],
-            'utilisateur',
+                'utilisateur',
             [
                 'administrateur',
                 'projet',
@@ -108,6 +108,22 @@ class ProjetController extends AbstractController{
             'administrateur' => $result,
         ];
         // Retourner les résultats
+        return $result;
+    }
+
+    public static function getUsers()
+    {
+        $result = Model::getInstance()->getDataFromEntity(
+            [
+                'utilisateur.Nom',
+                'utilisateur.Prenom',
+            ],
+                'utilisateur',
+            [
+                'projet',
+            ],
+        );
+
         return $result;
     }
 }
