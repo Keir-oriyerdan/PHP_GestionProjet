@@ -37,14 +37,17 @@ class ProjetController extends AbstractController{
     {
         // Si le formulaire est soumis
         if (isset($_POST['submit'])) {
-            AdministrateurController::setAdmin();
-            $ID_Admin = Model::getInstance()->getByAttribute('administrateur', 'ID_Utilisateur', $_SESSION['ID'], '=', 'ID');
-            $ID_Admin = $ID_Admin[0]->getID();
+            if (!isset($_SESSION['ID_Admin'])) {
+                AdministrateurController::setAdmin();
+                $ID_Admin = Model::getInstance()->getByAttribute('administrateur', 'ID_Utilisateur', $_SESSION['ID'], '=', 'ID');
+                $ID_Admin = $ID_Admin[0]->getID();
+                $_SESSION['ID_Admin'] = $ID_Admin;
+            }
             // Récupérer les données du formulaire
             $datas = [
                 'nom' => $_POST['nom'],
                 'description' => $_POST['description'],
-                'ID_Administrateur' => $ID_Admin,
+                'ID_Administrateur' => $_SESSION['ID_Admin'],
             ];
             // Appeler la fonction pour créer un projet avec les données
             $this->createProjet($datas);

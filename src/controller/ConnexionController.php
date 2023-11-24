@@ -24,6 +24,11 @@ class ConnexionController extends AbstractController
                 $ID = Model::getInstance()->getByAttribute('utilisateur', 'Username', htmlspecialchars($_POST['username']), '=', 'ID');
                 $ID = $ID[0]->getID();
                 $_SESSION['ID'] = $ID;
+                $ID_Admin = Model::getInstance()->getByAttribute('administrateur', 'ID_Utilisateur', $_SESSION['ID'], '=', 'ID');
+                if (array_key_exists(0, $ID_Admin)) {
+                    $ID_Admin = $ID_Admin[0]->getID();
+                    $_SESSION['ID_Admin'] = $ID_Admin;
+                }
                 header("Location: ?controller=IndexController&method=index");
             } else {
                 if (isset($_POST['submit'])) {
