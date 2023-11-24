@@ -45,6 +45,12 @@ class TacheController extends AbstractController {
         $this->render('projet.php', ['projet' => $result, 'etatTache' => $tache->afficherEtat()]);
 
     }
+
+    public static function displayTaches()
+    {
+        return Model::getInstance()->getTache();
+    }
+
 }
 
 /*

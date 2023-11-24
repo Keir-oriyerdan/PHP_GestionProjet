@@ -8,7 +8,7 @@ echo '<a href=?controller=IndexController&method=index>Accueil</a><br>';
 echo '<a href=?controller=ProjetController&method=displayProjets>Retour a la liste des projets</a><br><br>';
 
 // $datasU = ProjetController::getUsers();
-$datasT = TacheController::displayTache();
+$datasT = TacheController::displayTaches();
 $datasP = PrioriteController::displayPriorite();
 
 // Récupère les données de l'administrateur du projet
