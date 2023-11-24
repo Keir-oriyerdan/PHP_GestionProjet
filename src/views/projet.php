@@ -9,7 +9,7 @@ echo '<a href=?controller=ProjetController&method=displayProjets>Retour a la lis
 
 // $datasU = ProjetController::getUsers();
 $datasT = TacheController::displayTache();
-$datasP = PrioriteController::displayPriorite();
+$datasP = PrioriteController::displayPrio();
 if (empty($datasT)) {
     $datasT = 'Aucunes tâches';
 } else {
