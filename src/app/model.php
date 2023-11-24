@@ -171,4 +171,12 @@ class Model extends PDO
         $query = $this->query($sql);
         return $query->fetchAll(PDO::FETCH_CLASS, Config::ENTITY . 'Tache');
     }
+
+    public function getPrio()
+    {
+        $sql = 'select priorite.Niveau_Priorite from priorite
+        join tache on tache.ID_Priorite = priorite.id';
+        $query = $this->query($sql);
+        return $query->fetchAll(PDO::FETCH_CLASS, Config::ENTITY . 'Tache');
+    }
 }
