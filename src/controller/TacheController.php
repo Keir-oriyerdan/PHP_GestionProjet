@@ -64,8 +64,7 @@ class TacheController extends AbstractController {
 
    /* public function displayTache()
     {
-        $result = Model::getInstance()->getById('tache', $_GET['id']);
-        $this->render('projet.php', ['projet' => $result]);
+        return Model::getInstance()->getTache();
     }
 }
 */
