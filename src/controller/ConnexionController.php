@@ -21,7 +21,9 @@ class ConnexionController extends AbstractController
                 $_SESSION['connecté'] = 'connecté';
                 // Stocker l'ID de l'utilisateur dans la session
                 $_SESSION['username'] = htmlspecialchars($_POST['username']);
-                $_SESSION['ID'] = Model::getInstance()->getByAttribute('utilisateur', 'Username', htmlspecialchars($_POST['username']), '=', 'ID');
+                $ID = Model::getInstance()->getByAttribute('utilisateur', 'Username', htmlspecialchars($_POST['username']), '=', 'ID');
+                $ID = $ID[0]->getID();
+                $_SESSION['ID'] = $ID;
                 header("Location: ?controller=IndexController&method=index");
             } else {
                 if (isset($_POST['submit'])) {
