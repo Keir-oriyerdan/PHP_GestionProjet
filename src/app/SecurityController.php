@@ -8,7 +8,8 @@ use Madmax\Skrrr\app\Model;
 use Madmax\Skrrr\forms\FormConnexion;
 use PDO;
 
-class SecurityController extends AbstractController {
+class SecurityController extends AbstractController
+{
 
     private $id_utilisateur;
     private $username;
@@ -18,7 +19,7 @@ class SecurityController extends AbstractController {
     public static function isConnected()
     {
         // Démarrer la session si pas active.
-/*         if (session_status() == PHP_SESSION_NONE) {
+        /*         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         } */
 
