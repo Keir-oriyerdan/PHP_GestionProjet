@@ -22,18 +22,20 @@
         ?>
     </header>
     <section>
-        <?php
-        // affichage des différents projets
-        foreach ($projets as $key => $projet) {
-            echo '<li class="projectlist">
-        Projets: 
-        <a href=?controller=ProjetController&method=displayProjet&id=' . $projet->getID() . '>' . $projet->getNom() . '</a>
-        <a href=?controller=ProjetController&method=updateProjet&id=' . $projet->getID() . '>Modifier</a>  
-        <a href=?controller=ProjetController&method=supprimerProjet&id=' . $projet->getID() . '>Supprimer</a>
+        <li>
+            <a>Liste des projets</a>
+        </li>
+    <?php 
+    // affichage des différents projets
+    foreach ($projets as $key => $projet) {
+        echo '<li class="projetlist">
+        <a href=?controller=ProjetController&method=displayProjet&id='.$projet->getID().'>'.$projet->getNom().'</a>
+        <a href=?controller=ProjetController&method=updateProjet&id='.$projet->getID().'>Modifier</a>  
+        <a href=?controller=ProjetController&method=supprimerProjet&id='.$projet->getID().'>Supprimer</a>
         </li>';
-        }
-        ?>
-        <a href="?controller=ProjetController&method=ProjetForm"><button type="button">Crée un Projet</button></a>
+    }
+    ?>
+    <a href="?controller=ProjetController&method=ProjetForm" class="createpr">Créer un Projet</a>
     </section>
 </body>
 
