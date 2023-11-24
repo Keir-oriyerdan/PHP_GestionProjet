@@ -118,7 +118,7 @@ class ProjetController extends AbstractController{
                 'utilisateur',
             [
                 'projet',
-            ],
+            ]
         );
 
         return $result;

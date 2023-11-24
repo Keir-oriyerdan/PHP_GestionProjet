@@ -21,9 +21,18 @@ class TacheController extends AbstractController {
         $this->etattache = $this->etattache->EtatNonDebute();
     } */
 
-    public function displayTache()
+    public static function displayTache()
     {
-        $result = Model::getInstance()->getById('tache', $_GET['id']);
-        $this->render('projet.php', ['projet' => $result]);
+        $result = Model::getInstance()->getDataFromEntity(
+            [
+                'tache.Titre',
+            ],
+                'tache',
+            [
+                'projet',
+            ]
+        );
+
+        return $result;
     }
 }
