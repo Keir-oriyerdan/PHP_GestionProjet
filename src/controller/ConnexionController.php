@@ -17,14 +17,13 @@ class ConnexionController extends AbstractController {
             ];
             $this->render('connexion.php', $form);
             if (isset($_POST['submit']) && SecurityController::validateIds()) {
-                session_start();
                 $_SESSION['connecté'] = 'connecté';
                 // Stocker l'ID de l'utilisateur dans la session
                 $_SESSION['username'] = htmlspecialchars($_POST['username']);
                 $_SESSION['ID'] = Model::getInstance()->getByAttribute('utilisateur', 'Username', htmlspecialchars($_POST['username']), '=', 'ID');
-                echo 'connecté';
+                header("Location: ?controller=IndexController&method=index");
             } else {
-                var_dump(Model::getInstance()->getByAttribute('utilisateur', 'Username', htmlspecialchars($_POST['username'])));
+                echo 'Identifiants incorrects';
             }
         } else {
             header("Location: ?controller=IndexController&method=index");
