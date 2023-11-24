@@ -23,7 +23,7 @@ class TacheController extends AbstractController {
 
     public static function displayTache()
     {
-        $result = Model::getInstance()->getDataFromEntity(
+        Model::getInstance()->getDataFromEntity(
             [
                 'tache.Titre',
             ],
@@ -32,7 +32,5 @@ class TacheController extends AbstractController {
                 'projet',
             ]
         );
-
-        return $result;
     }
 }
