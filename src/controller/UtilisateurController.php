@@ -46,9 +46,17 @@ class UtilisateurController extends AbstractController
                 'prenom' => $_POST['prenom'],
                 'Email' => $_POST['email'],
                 'password' => $password,
-                'Username' => $_POST['username'],
+                'Username' => htmlspecialchars($_POST['username']),
             ];
-            $this->creerUtilisateur($datas);
+            $username = Model::getInstance()->getByAttribute('utilisateur', 'Username', htmlspecialchars($_POST['username']), '=', 'Username');
+            if (array_key_exists(0, $username)) {
+                $username = $username[0]->getUsername();
+                if ($username === $_POST['username']) {
+                    echo "Nom d'utilsateur déjà existant";
+                }
+            } else {
+                $this->creerUtilisateur($datas);
+            }
         }
         $form = [
             'form' => FormUtilisateur::createForm('?controller=UtilisateurController&method=ajoutUtilisateur'),
