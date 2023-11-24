@@ -8,6 +8,7 @@ class Utilisateur {
     private ?string $Prenom;
     private ?string $Username;
     private ?string $Email;
+    private ?string $Password;
     
     /**
      * Get the value of ID
@@ -105,6 +106,26 @@ class Utilisateur {
     public function setEmail($Email)
     {
         $this->Email = $Email;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Password
+     */ 
+    public function getPassword()
+    {
+        return $this->Password;
+    }
+
+    /**
+     * Set the value of Password
+     *
+     * @return  self
+     */ 
+    public function setPassword($Password)
+    {
+        $this->Password = $Password;
 
         return $this;
     }

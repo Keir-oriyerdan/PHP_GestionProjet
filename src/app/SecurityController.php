@@ -36,18 +36,17 @@ class SecurityController extends AbstractController
     // Validation des identifiants demandés.
     public static function validateIds()
     {
-        $username = Model::getInstance()->getByAttribute('utilisateur', 'Username', htmlspecialchars($_POST['username']));
-        if (array_key_exists(0, $username)) {
-            $username = $username[0]->getUsername();
+        $user = Model::getInstance()->getByAttribute('utilisateur', 'Username', htmlspecialchars($_POST['username']));
+        if (array_key_exists(0, $user)) {
+            $username = $user[0]->getUsername();
+            $password = $user[0]->getPassword();
         }
-        $password = Model::getInstance()->getByAttribute('utilisateur', 'Username', htmlspecialchars($_POST['username']), '=', 'Password');
-        if (array_key_exists(1, $password)) {
-            $password = $password[1]->Password;
-        }
-        // Si l'utilisateur et le mot de passe sont corrects c'est bon. Il faut reprendre car pas fini.
-        if (isset($_POST['submit']) && (htmlspecialchars($_POST['username']) === $username) && password_verify(htmlspecialchars($_POST['password']), $password)) {
-            // Regénérer l'ID de session si l'authentification est réussie
-            return true;
+        // Si l'utilisateur et le mot de passe sont corrects c'est bon.
+        if (isset($username) && isset($password)) {
+            if (isset($_POST['submit']) && (htmlspecialchars($_POST['username']) === $username) && password_verify(htmlspecialchars($_POST['password']), $password)) {
+                // Regénérer l'ID de session si l'authentification est réussie
+                return true;
+            }
         }
         return false;
     }
