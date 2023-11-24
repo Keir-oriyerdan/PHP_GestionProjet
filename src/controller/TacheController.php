@@ -9,7 +9,7 @@ use Madmax\Skrrr\app\Model;
 
 class TacheController extends AbstractController {
 
-    private EtatCycle $etattache;
+    /* private EtatCycle $etattache;
 
     public function __construct()
     {
@@ -19,11 +19,11 @@ class TacheController extends AbstractController {
     public function EtatTache()
     {
         $this->etattache = $this->etattache->EtatNonDebute();
-    } 
+    } */
 
-    public function displayPrioTache()
+    public function displayTache()
     {
-        $result = Model::getInstance()->getById('priorite', $_GET['id']);
+        $result = Model::getInstance()->getById('tache', $_GET['id']);
         $this->render('projet.php', ['projet' => $result]);
     }
 }

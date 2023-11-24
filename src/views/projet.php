@@ -10,6 +10,6 @@ echo 'Nom du projet: '.$projet->getNom().'<br>';
 echo 'Description: '.$projet->getDescription().'<br>';
 echo 'Administrateur: '.'<br>';
 echo 'Participant: '.'<br>';
-echo 'Tache: '.'<br>';  
-echo 'Prio de la tache: '.$projet->displayPrioTache().'<br>';
+echo 'Tache: '.$projet->displayPrioTache().'<br>';  
+echo 'Prio de la tache: '.$projet->displayPriorite().'<br>';
 echo '(TEMPO)admin du proj: '.$datas[0]->Nom.' '.$datas[0]->Prenom.'<br>';
