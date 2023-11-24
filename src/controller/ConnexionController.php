@@ -7,7 +7,8 @@ use Madmax\Skrrr\app\SecurityController;
 use Madmax\Skrrr\app\Model;
 use Madmax\Skrrr\forms\FormConnexion;
 
-class ConnexionController extends AbstractController {
+class ConnexionController extends AbstractController
+{
     public function connect()
     {
         if (!SecurityController::isConnected()) {
@@ -23,7 +24,9 @@ class ConnexionController extends AbstractController {
                 $_SESSION['ID'] = Model::getInstance()->getByAttribute('utilisateur', 'Username', htmlspecialchars($_POST['username']), '=', 'ID');
                 header("Location: ?controller=IndexController&method=index");
             } else {
-                echo 'Identifiants incorrects';
+                if (isset($_POST['submit'])) {
+                    echo 'Identifiants incorrects';
+                }
             }
         } else {
             header("Location: ?controller=IndexController&method=index");
