@@ -24,9 +24,9 @@ if (empty($datasT)) {
     echo 'Aucune tâche';
 } else {
     foreach ($datasT as $key => $tache) {
-        echo $tache;
+        echo $datasT[$key]->getTitre();
         if (!empty($datasP)) {
-            echo 'Prio'.$datasP[$key];
+            echo ' Prio : '.$datasP[$key]->Niveau_Priorite.'<br>';
         }
     }
 }
