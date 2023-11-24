@@ -9,11 +9,11 @@ use Madmax\Skrrr\app\Model;
 class AdministrateurController extends AbstractController {
 
     // Fonction pour définir un user comme admin
-    public function setAdmin()
+    public static function setAdmin()
     {
         // Création d'un tableau de données avec l'ID de l'user à définir comme admin.
         $datas = [
-            'ID_Utilisateur' => $_GET['id'],
+            'ID_Utilisateur' => $_SESSION['ID'],
         ];
         // Appel de la fonction pour enregistrer les données dans la table 'administrateur'
         Model::getInstance()->save('administrateur', $datas);
