@@ -107,9 +107,6 @@ class ProjetController extends AbstractController{
                 'projet',
             ],
         );
-        $datas = [
-            'administrateur' => $result,
-        ];
         // Retourner les résultats
         return $result;
     }
