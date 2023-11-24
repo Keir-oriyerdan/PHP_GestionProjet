@@ -169,6 +169,6 @@ class Model extends PDO
         $sql = 'select tache.Titre from tache
         join projet on tache.ID_Projet = projet.ID';
         $query = $this->query($sql);
-        return $query->fetchAll(PDO::FETCH_CLASS, Config::ENTITY . 'Tache');
+        return $query->fetchAll(PDO::FETCH_CLASS, Config::ENTITY . 'tache');
     }
 }

@@ -10,7 +10,7 @@ echo '<a href=?controller=ProjetController&method=displayProjets>Retour a la lis
 // $datasU = ProjetController::getUsers();
 $datasT = TacheController::displayTaches();
 $datasP = PrioriteController::displayPriorite();
-
+var_dump($datasT);
 // Récupère les données de l'administrateur du projet
 $datas = ProjetController::getAdmin();
 // Affiche le nom du projet 

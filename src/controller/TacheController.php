@@ -18,7 +18,7 @@ use Madmax\Skrrr\entity\Tache;
 // Contrôleur de tâche
 class TacheController extends AbstractController {
 
-    public function displayTache() {
+/*     public function displayTache() {
         $result = Model::getInstance()->getById('tache', $_GET['id']);
 
        
@@ -44,7 +44,7 @@ class TacheController extends AbstractController {
 
         $this->render('projet.php', ['projet' => $result, 'etatTache' => $tache->afficherEtat()]);
 
-    }
+    } */
 
     public static function displayTaches()
     {
