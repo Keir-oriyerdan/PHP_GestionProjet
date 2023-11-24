@@ -100,4 +100,24 @@ class ProjetController extends AbstractController{
         // Retourner les résultats
         return $result;
     }
+
+    public static function getUsers()
+    {
+        $result = Model::getInstance()->getDataFromEntity(
+            [
+                'utilisateur.Nom',
+                'utilisateur.Prenom',
+            ],
+            'utilisateur',
+            [
+                'utilisateur',
+                'projet',
+            ],
+        );
+        $datas = [
+            'utilisateur' => $result,
+        ];
+
+        return $result;
+    }
 }
