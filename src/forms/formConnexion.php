@@ -20,7 +20,7 @@ class FormConnexion
         $this->motDePasse = $motDePasse;
     }
 
-
+    //créer un formulaire en fonction du mode.
     public static function createForm($action, $mode = 'create', $id = 0)
     {
         if ($mode === 'update') {
@@ -45,7 +45,7 @@ class FormConnexion
         return $form;
     }
 
-
+    //vérifier les informations de connexion
     function VerifConnexion()
     {
     //$error est initialisée à false. 
@@ -97,9 +97,11 @@ class FormConnexion
         return true;
        }
         
-
+        // Si la session 'username' n'est pas définie, cela signifie que l'utilisateur n'est pas connecté
         if(!isset($_SESSION['username'])){
+            //donc     // Redirection vers la page d'accueil (index.php).
             header('Location:index.php');
+            // Terminer l'exécution du script (avant la redirection)
             exit;
         }
     }

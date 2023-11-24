@@ -16,13 +16,15 @@ class FormProjet
         $this->description = $description;
     }
 
-    // création du formulaire pour créer un projet
+    // créa du formulaire pour créer un projet en fonction du mode
     public static function createForm($action, $mode = 'create', $id = 0)
     {
+        // Si mode update on récupére les données du projet et on retourne le formulaire de mise à jour.
         if ($mode === 'update') {
             Model::getInstance()->getById('projet', $id);
             return self::formUpdate($action);
         }
+        // Sinon on retourner le form de créa
         return self::form($action);
     }
 
@@ -56,18 +58,18 @@ class FormProjet
         return $form;
     }
 
-
+    //message de succès d'enregistrement de projet
     public function enregistrerProjet() {
         echo "Le projet {$this->nom} a été crée !";
     }
-
+    //Valider les données du projet
     public function validerProjet() {
         $error = [];
-
+        // Vérification des champs obligatoires
         if (empty($_POST['nom']) || empty($_POST['description'])) {
             $error[] = 'Veuillez compléter tous les champs.';
         }
-
+        // Retourne les erreurs s'il y en a, sinon retourne true
         if (count($error) > 0) {
             return $error;
         }
