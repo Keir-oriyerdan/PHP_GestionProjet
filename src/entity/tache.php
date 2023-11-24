@@ -7,46 +7,84 @@ class Tache {
     private ?string $Titre;
     private ?string $Description;
     private ?int $Id_Priorite;
-    private ?int $id;
-
-    // Autres méthodes et propriétés
 
     /**
-     * Get the value of Id
+     * Get the value of ID
      */ 
-    public function getId()
+    public function getID()
     {
-        return $this->id;
+        return $this->ID;
     }
 
     /**
-     * Set the value of Id
+     * Set the value of ID
      *
      * @return  self
      */ 
-    public function setId($id)
+    public function setID($ID)
     {
-        $this->id = $id;
+        $this->ID = $ID;
 
         return $this;
     }
 
     /**
-     * Affiche l'état de la tâche
-     */
-    public function afficherEtat() {
-        // Vous pouvez implémenter la logique pour afficher l'état en fonction de l'ID
-        switch ($this->id) {
-            case 1:
-                return "Non débuté";
-            case 2:
-                return "En cours";
-            case 3:
-                return "Terminé";
-            default:
-                return "État inconnu";
-        }
+     * Get the value of Titre
+     */ 
+    public function getTitre()
+    {
+        return $this->Titre;
     }
 
-    // Autres méthodes et propriétés
+    /**
+     * Set the value of Titre
+     *
+     * @return  self
+     */ 
+    public function setTitre($Titre)
+    {
+        $this->Titre = $Titre;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Description
+     */ 
+    public function getDescription()
+    {
+        return $this->Description;
+    }
+
+    /**
+     * Set the value of Description
+     *
+     * @return  self
+     */ 
+    public function setDescription($Description)
+    {
+        $this->Description = $Description;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Id_Priorite
+     */ 
+    public function getId_Priorite()
+    {
+        return $this->Id_Priorite;
+    }
+
+    /**
+     * Set the value of Id_Priorite
+     *
+     * @return  self
+     */ 
+    public function setId_Priorite($Id_Priorite)
+    {
+        $this->Id_Priorite = $Id_Priorite;
+
+        return $this;
+    }
 }
