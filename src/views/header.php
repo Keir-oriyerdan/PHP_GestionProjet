@@ -14,10 +14,10 @@ use Madmax\Skrrr\app\SecurityController;
             <li><a href="?controller=UtilisateurController&method=ajoutUtilisateur">Ajouter utilisateur</a></li>
             <li><a href="?controller=UtilisateurController&method=displayUtilisateurs">Utilisateurs</a></li>
             <li><a href="?controller=ProjetController&method=displayProjets">Voir les projets</a></li>
-            <li><a href="?controller=SecurityController&method=deconnexion">Déconnexion</a></li>
+            <li><a href="?controller=ConnexionController&method=deconnexion">Déconnexion</a></li>
             <?php else : echo "Vous devez être connecté";?>
             <li><a href="?controller=UtilisateurController&method=ajoutUtilisateur">Créer un compte</a></li>
-            <li><a href="?controller=ConnexionController&method=connect">Connection</a></li>
+            <li><a href="?controller=ConnexionController&method=connect">Connexion</a></li>
             <?php endif; ?>
         </ul>
     </nav>
