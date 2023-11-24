@@ -2,6 +2,7 @@ header {
   width: 100vw;
   height: 150px;
   background-color: #283618;
+  opacity: 0.85;
   display: flex;
   justify-content: center;
   align-items: center;

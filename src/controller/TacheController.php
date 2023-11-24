@@ -21,8 +21,9 @@ class TacheController extends AbstractController {
         $this->etattache = $this->etattache->EtatNonDebute();
     } 
 
-    public function getPrioTache()
+    public function displayPrioTache()
     {
-        $prioritetache = Model::getInstance()->getPrioriteFromTache();
+        $result = Model::getInstance()->getById('priorite', $_GET['id']);
+        $this->render('projet.php', ['projet' => $result]);
     }
 }
