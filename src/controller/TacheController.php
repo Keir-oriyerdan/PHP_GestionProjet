@@ -8,29 +8,9 @@ use Madmax\Skrrr\controller\interfaces\CycleNonDebute;
 use Madmax\Skrrr\app\Model;
 
 class TacheController extends AbstractController {
-
-    /* private EtatCycle $etattache;
-
-    public function __construct()
-    {
-        $this->etattache = new CycleNonDebute();
-    }
-
-    public function EtatTache()
-    {
-        $this->etattache = $this->etattache->EtatNonDebute();
-    } */
-
+    
     public static function displayTache()
     {
-        Model::getInstance()->getDataFromEntity(
-            [
-                'tache.Titre',
-            ],
-                'tache',
-            [
-                'projet',
-            ]
-        );
+        return Model::getInstance()->getTache();
     }
 }
