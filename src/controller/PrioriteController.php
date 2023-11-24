@@ -7,7 +7,7 @@ use Madmax\Skrrr\app\Model;
 
 class PrioriteController extends AbstractController
 {
-    // Fonction pour afficher les niveaux de priorité
+    /* // Fonction pour afficher les niveaux de priorité
     public static function displayPriorite()
     {
         // Appeler la fonction pour récupérer des données liées aux niveaux de priorité et aux tâches
@@ -20,5 +20,10 @@ class PrioriteController extends AbstractController
                 'tache',
             ]
         );
+    } */
+
+    public static function displayPrio()
+    {
+        return Model::getInstance()->getPrio();
     }
 }
