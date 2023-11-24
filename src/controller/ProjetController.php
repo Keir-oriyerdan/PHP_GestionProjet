@@ -95,7 +95,7 @@ class ProjetController extends AbstractController{
                 'utilisateur.Nom',
                 'utilisateur.Prenom',
             ],
-            'utilisateur',
+                'utilisateur',
             [
                 'administrateur',
                 'projet',
@@ -115,15 +115,11 @@ class ProjetController extends AbstractController{
                 'utilisateur.Nom',
                 'utilisateur.Prenom',
             ],
-            'utilisateur',
-            [
                 'utilisateur',
+            [
                 'projet',
             ],
         );
-        $datas = [
-            'utilisateur' => $result,
-        ];
 
         return $result;
     }
