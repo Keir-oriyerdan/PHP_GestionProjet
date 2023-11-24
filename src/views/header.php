@@ -9,7 +9,7 @@ use Madmax\Skrrr\app\SecurityController;
     <nav>
         <img src="./img/logo.png" alt="">
         <ul>
-        <li><a href="?controller=EmpruntController&method=displayEmprunts">Emprunts</a></li>
+        
         <!-- Condition qui Vérifie si l'utilisateur est connecté -->
         <?php if (SecurityController::isConnected()) : ?>
             <li><a href="?controller=UtilisateurController&method=ajoutUtilisateur">Ajouter utilisateur</a></li>
