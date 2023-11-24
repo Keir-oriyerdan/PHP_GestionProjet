@@ -46,7 +46,7 @@ class TacheController extends AbstractController {
 
     } */
 
-    public static function displayTaches()
+    public static function displayTache()
     {
         return Model::getInstance()->getTache();
     }
