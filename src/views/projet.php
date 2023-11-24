@@ -23,9 +23,13 @@ echo 'Taches: ';
 if (empty($datasT)) {
     echo 'Aucune tâche';
 } else {
+    // Parcourt le tableau $datasT
     foreach ($datasT as $key => $tache) {
+        // Affiche le titre de la tâche actuelle
         echo $datasT[$key]->getTitre();
+        // Vérifie si le tableau $datasP n'est pas vide
         if (!empty($datasP)) {
+             // Affiche la priorité de la tâche actuelle
             echo ' Prio : '.$datasP[$key]->Niveau_Priorite.'<br>';
         }
     }
