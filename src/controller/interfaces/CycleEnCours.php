@@ -18,7 +18,7 @@ class CycleEnCours implements EtatCycle {
 
     public function EtatNonDebute(): EtatCycle
     {
-        echo 'je passe en non débuté';
+        echo 'je passe ne suis pas débuté';
         return new CycleNonDebute();
     }
 }
